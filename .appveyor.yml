@@ -9,17 +9,50 @@ environment:
   global:
     LatestLTSQtVersion: 5.9
   matrix:
-  - QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015_64
+  - NAME: KCodecsMSVC2015x64
+    module_name: KCodecs
+    module_repo: kcodecs.git
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015_64
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
     platform: amd64
     use_mingw: "false"
     python_path: C:\Python37-x64
-  - QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015
+  - NAME: KCodecsMSVC2015x32
+    module_name: KCodecs
+    module_repo: kcodecs.git
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
     platform: x86
     use_mingw: "false"
     python_path: C:\Python37
-  - QT5: C:\Qt\%LatestLTSQtVersion%\mingw53_32
+  - NAME: KCodecsMinGWx64
+    module_name: KCodecs
+    module_repo: kcodecs.git
+    QT5: C:\Qt\%LatestLTSQtVersion%\mingw53_32
+    COMPILER: C:\Qt\Tools\mingw530_32
+    platform: x86
+    use_mingw: "true"
+    python_path: C:\Python37
+  - NAME: KItemModelsMSVC2015x64
+    module_name: KItemModels
+    module_repo: kitemmodels.git
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015_64
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    platform: amd64
+    use_mingw: "false"
+    python_path: C:\Python37-x64
+  - NAME: KItemModelsMSVC2015x32
+    module_name: KItemModels
+    module_repo: kitemmodels.git
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    platform: x86
+    use_mingw: "false"
+    python_path: C:\Python37
+  - NAME: KItemModelsMinGWx64
+    module_name: KItemModels
+    module_repo: kitemmodels.git
+    QT5: C:\Qt\%LatestLTSQtVersion%\mingw53_32
     COMPILER: C:\Qt\Tools\mingw530_32
     platform: x86
     use_mingw: "true"
@@ -51,38 +84,14 @@ before_build:
 
 build_script:
 - echo KCodecs
-- git clone git://anongit.kde.org/kcodecs.git KCodecs
-- cd KCodecs
+- git clone git://anongit.kde.org/%module_repo% %module_name%
+- cd %module_name%
 - mkdir .\build 
 - cd .\build
-- cmake -G %CMAKEGENERATOR% -DCMAKE_DEBUG_POSTFIX=d -DCMAKE_INSTALL_PREFIX=../../KDEdeploy -DCMAKE_BUILD_TYPE=DEBUG ../
+- cmake -G %CMAKEGENERATOR% -DCMAKE_DEBUG_POSTFIX=d -DCMAKE_INSTALL_PREFIX=../../%module_name% -DCMAKE_BUILD_TYPE=DEBUG ../
 - cmake --build .
 - cmake --build . --target install
-- cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../KDEdeploy -DCMAKE_BUILD_TYPE=RELEASE ../
-- cmake --build .
-- cmake --build . --target install
-- cd ..\..\
-- echo KItemModels
-- git clone git://anongit.kde.org/kitemmodels.git KItemModels
-- cd KItemModels
-- mkdir .\build 
-- cd .\build
-- cmake -G %CMAKEGENERATOR% -DCMAKE_DEBUG_POSTFIX=d -DCMAKE_INSTALL_PREFIX=../../KDEdeploy -DCMAKE_BUILD_TYPE=DEBUG ../
-- cmake --build .
-- cmake --build . --target install
-- cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../KDEdeploy -DCMAKE_BUILD_TYPE=RELEASE ../
-- cmake --build .
-- cmake --build . --target install
-- cd ..\..\
-- echo KItemViews
-- git clone git://anongit.kde.org/kitemviews.git KItemViews
-- cd KItemViews
-- mkdir .\build 
-- cd .\build
-- cmake -G %CMAKEGENERATOR% -DCMAKE_DEBUG_POSTFIX=d -DCMAKE_INSTALL_PREFIX=../../KDEdeploy -DCMAKE_BUILD_TYPE=DEBUG ../
-- cmake --build .
-- cmake --build . --target install
-- cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../KDEdeploy -DCMAKE_BUILD_TYPE=RELEASE ../
+- cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../%module_name% -DCMAKE_BUILD_TYPE=RELEASE ../
 - cmake --build .
 - cmake --build . --target install
 - cd ..\..\
@@ -91,7 +100,7 @@ after_build:
 - if %use_mingw%==true set PATH=C:\Program Files\Git\usr\bin;%PATH%
 - if %use_mingw%==true (set archivename=mingw) else (set archivename=msvc2015)
 - if %platform%==x86 (set archivename=%archivename%_x86) else (set archivename=%archivename%_x64)
-- 7z a -tzip KDEapi.zip .\KDEdeploy\*
+- 7z a -tzip %module_name%.zip .\%module_name%\*
 
 artifacts:
-- path: '.\KDEapi.zip'
+- path: '.\*.zip'
