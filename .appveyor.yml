@@ -225,8 +225,8 @@ before_build:
 - if %module_name%==KArchive mkdir .\liblzma
 - if %module_name%==KArchive cd .\liblzma
 - if %module_name%==KArchive curl -k -L https://tukaani.org/xz/xz-5.2.4.tar.gz --output liblzma.zip
-- if %module_name%==KArchive 7z x liblzma.zip
-- if %module_name%==KArchive dir liblzma
+- if %module_name%==KArchive 7z x liblzma.tar.gz
+- if %module_name%==KArchive dir
 - if %module_name%==KArchive set PATH=%CD%\liblzma;%PATH%
 - if %module_name%==KArchive cd ..\
 - git clone git://anongit.kde.org/extra-cmake-modules ECM
