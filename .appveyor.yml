@@ -233,7 +233,7 @@ before_build:
 - if %module_name%==KArchive if %use_mingw%==false 7z x liblzma.tar.gz
 - if %module_name%==KArchive if %use_mingw%==false del /F /Q liblzma.tar.gz
 - if %module_name%==KArchive if %use_mingw%==false 7z x liblzma.tar
-- if %module_name%==KArchive dif %use_mingw%==false del /F /Q liblzma.tar
+- if %module_name%==KArchive if %use_mingw%==false del /F /Q liblzma.tar
 - if %module_name%==KArchive if %use_mingw%==false cd xz-5.2.4\windows\vs2013
 - if %module_name%==KArchive if %platform%%==x86 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Debug /property:Platform=Win32 && xcopy /Y /I /K Debug\Win32\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Debug\Win32\liblzma_dll\*.lib ..\..\..\lib && xcopy /Y /I /K Debug\Win32\liblzma_dll\*.pdb ..\..\..\lib
 - if %module_name%==KArchive if %platform%%==x86 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Release /property:Platform=Win32 && xcopy /Y /I /K Release\Win32\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\Win32\liblzma_dll\*.lib ..\..\..\lib
