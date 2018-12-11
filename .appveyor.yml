@@ -9,7 +9,7 @@ environment:
   global:
     LatestLTSQtVersion: 5.9
   matrix:
-  - QT5: C:\Qt\5.11\msvc2015_64
+  - QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015_64
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
     platform: amd64
     use_mingw: "false"
@@ -41,6 +41,7 @@ build_script:
 - cmake --build .
 - cmake --build . --target install
 - cd ..\..\
+- set PATH=%CD%\ECMbuild;%PATH%
 - echo KItemModels
 - git clone git://anongit.kde.org/kitemmodels.git KItemModels
 - cd KItemModels
