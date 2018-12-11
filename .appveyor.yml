@@ -214,11 +214,13 @@ before_build:
 - if %module_name%==KCodecs cd .\gperf
 - if %module_name%==KCodecs curl -k -L https://sourceforge.net/projects/gnuwin32/files/gperf/3.0.1/gperf-3.0.1-bin.zip --output gperf.zip
 - if %module_name%==KCodecs 7z x gperf.zip
+- if %module_name%==KCodecs del /F /Q gperf.zip
 - if %module_name%==KCodecs set PATH=%CD%\bin;%PATH%
 - if %module_name%==KArchive mkdir .\bzip2
 - if %module_name%==KArchive cd .\bzip2
 - if %module_name%==KArchive curl -k -L https://sourceforge.net/projects/gnuwin32/files/bzip2/1.0.5/bzip2-1.0.5-bin.zip --output bzip2.zip
 - if %module_name%==KArchive 7z x bzip2.zip
+- if %module_name%==KArchive del /F /Q bzip2.zip
 - if %module_name%==KArchive dir
 - if %module_name%==KArchive rem set PATH=%CD%;%PATH%
 - if %module_name%==KArchive cd ..\
@@ -226,6 +228,9 @@ before_build:
 - if %module_name%==KArchive cd .\liblzma
 - if %module_name%==KArchive curl -k -L https://tukaani.org/xz/xz-5.2.4.tar.gz --output liblzma.tar.gz
 - if %module_name%==KArchive 7z x liblzma.tar.gz
+- if %module_name%==KArchive del /F /Q liblzma.tar.gz
+- if %module_name%==KArchive 7z x liblzma.tar
+- if %module_name%==KArchive del /F /Q liblzma.tar
 - if %module_name%==KArchive dir
 - if %module_name%==KArchive set PATH=%CD%\liblzma;%PATH%
 - if %module_name%==KArchive cd ..\
