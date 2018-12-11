@@ -33,7 +33,7 @@ before_build:
 
 build_script:
 - echo Extra CMake Modules
-- '"%programfiles%\Git\usr\bin\git" clone git://anongit.kde.org/extra-cmake-modules ECM'
+- '"%programfiles%\Git\usr\bin\git.exe" clone git://anongit.kde.org/extra-cmake-modules ECM'
 - cd ECM
 - mkdir .\build 
 - cd .\build
@@ -42,7 +42,7 @@ build_script:
 - cmake --build . --target install
 - cd ..\..\
 - echo KItemModels
-- '"%programfiles%\Git\usr\bin\git" clone git://anongit.kde.org/kitemmodels.git KItemModels'
+- '"%programfiles%\Git\usr\bin\git.exe" clone git://anongit.kde.org/kitemmodels.git KItemModels'
 - cd KItemModels
 - mkdir .\build 
 - cd .\build
