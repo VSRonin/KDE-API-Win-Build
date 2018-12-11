@@ -13,26 +13,26 @@ environment:
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
     platform: amd64
     use_mingw: "false"
+    python_path: C:\Python37-x64
   - QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
     platform: x86
     use_mingw: "false"
+    python_path: C:\Python37
   - QT5: C:\Qt\%LatestLTSQtVersion%\mingw53_32
     COMPILER: C:\Qt\Tools\mingw530_32
     platform: x86
     use_mingw: "true"
+    python_path: C:\Python37
 
 matrix:
   fast_finish: true
 
 before_build:
-- set PATH=%COMPILER%\bin;%QT5%\bin;%PATH%
+- set PATH=%COMPILER%\bin;%QT5%\bin;%python_path%;%PATH%
 - if not %use_mingw%==true call "%COMPILER%\vcvarsall.bat" %platform%
 - if %use_mingw%==true (set CMAKEGENERATOR="MinGW Makefiles") else (set CMAKEGENERATOR="NMake Makefiles")
 - if %use_mingw%==true set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
-
-build_script:
-- echo Extra CMake Modules
 - git.exe clone git://anongit.kde.org/extra-cmake-modules ECM
 - cd ECM
 - mkdir .\build 
@@ -42,9 +42,35 @@ build_script:
 - cmake --build . --target install
 - cd ..\..\
 - set PATH=%CD%\ECMbuild;%PATH%
+
+build_script:
 - echo KItemModels
 - git clone git://anongit.kde.org/kitemmodels.git KItemModels
 - cd KItemModels
+- mkdir .\build 
+- cd .\build
+- cmake -G %CMAKEGENERATOR% -DCMAKE_DEBUG_POSTFIX=d -DCMAKE_INSTALL_PREFIX=../../KDEdeploy -DCMAKE_BUILD_TYPE=DEBUG ../
+- cmake --build .
+- cmake --build . --target install
+- cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../KDEdeploy -DCMAKE_BUILD_TYPE=RELEASE ../
+- cmake --build .
+- cmake --build . --target install
+- cd ..\..\
+- echo KItemViews
+- git clone git://anongit.kde.org/kitemviews.git KItemViews
+- cd KItemViews
+- mkdir .\build 
+- cd .\build
+- cmake -G %CMAKEGENERATOR% -DCMAKE_DEBUG_POSTFIX=d -DCMAKE_INSTALL_PREFIX=../../KDEdeploy -DCMAKE_BUILD_TYPE=DEBUG ../
+- cmake --build .
+- cmake --build . --target install
+- cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../KDEdeploy -DCMAKE_BUILD_TYPE=RELEASE ../
+- cmake --build .
+- cmake --build . --target install
+- cd ..\..\
+- echo KCodecs
+- git clone git://anongit.kde.org/kcodecs.git KCodecs
+- cd KCodecs
 - mkdir .\build 
 - cd .\build
 - cmake -G %CMAKEGENERATOR% -DCMAKE_DEBUG_POSTFIX=d -DCMAKE_INSTALL_PREFIX=../../KDEdeploy -DCMAKE_BUILD_TYPE=DEBUG ../
