@@ -218,7 +218,7 @@ before_build:
 - if %module_name%==KCodecs set PATH=%CD%\bin;%PATH%
 - if %module_name%==KArchive mkdir .\bzip2
 - if %module_name%==KArchive cd .\bzip2
-- if %module_name%==KArchive curl -k -L https://sourceforge.net/projects/gnuwin32/files/bzip2/1.0.5/bzip2-1.0.5-lib.zip --output bzip2.zip
+- if %module_name%==KArchive curl -k -L https://sourceforge.net/projects/gnuwin32/files/bzip2/1.0.5/bzip2-1.0.5-bin.zip --output bzip2.zip
 - if %module_name%==KArchive 7z x bzip2.zip
 - if %module_name%==KArchive del /F /Q bzip2.zip
 - if %module_name%==KArchive set PATH=%CD%;%PATH%
@@ -235,10 +235,10 @@ before_build:
 - if %module_name%==KArchive if %use_mingw%==false 7z x liblzma.tar
 - if %module_name%==KArchive if %use_mingw%==false del /F /Q liblzma.tar
 - if %module_name%==KArchive if %use_mingw%==false cd xz-5.2.4\windows\vs2013
-- if %module_name%==KArchive if %platform%==x86 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Debug /property:Platform=Win32
-- if %module_name%==KArchive if %platform%==x86 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Release /property:Platform=Win32
-- if %module_name%==KArchive if %platform%==amd64 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Debug /property:Platform=x64
-- if %module_name%==KArchive if %platform%==amd64 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Release /property:Platform=x64
+- if %module_name%==KArchive if %platform%==x86 if %use_mingw%==false (msbuild xz_win.sln /property:Configuration=Debug /property:Platform=Win32)
+- if %module_name%==KArchive if %platform%==x86 if %use_mingw%==false (msbuild xz_win.sln /property:Configuration=Release /property:Platform=Win32)
+- if %module_name%==KArchive if %platform%==amd64 if %use_mingw%==false (msbuild xz_win.sln /property:Configuration=Debug /property:Platform=x64)
+- if %module_name%==KArchive if %platform%==amd64 if %use_mingw%==false (msbuild xz_win.sln /property:Configuration=Release /property:Platform=x64)
 - if %module_name%==KArchive if %use_mingw%==false cd ..\..\..\
 - if %module_name%==KArchive set PATH=%CD%;%PATH%
 - if %module_name%==KArchive cd ..\
