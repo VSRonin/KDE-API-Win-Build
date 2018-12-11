@@ -25,7 +25,7 @@ environment:
     platform: x86
     use_mingw: "false"
     python_path: C:\Python37
-  - NAME: KCodecsMinGWx64
+  - NAME: KCodecsMinGWx32
     module_name: KCodecs
     module_repo: kcodecs.git
     QT5: C:\Qt\%LatestLTSQtVersion%\mingw53_32
@@ -49,9 +49,33 @@ environment:
     platform: x86
     use_mingw: "false"
     python_path: C:\Python37
-  - NAME: KItemModelsMinGWx64
+  - NAME: KItemModelsMinGWx32
     module_name: KItemModels
     module_repo: kitemmodels.git
+    QT5: C:\Qt\%LatestLTSQtVersion%\mingw53_32
+    COMPILER: C:\Qt\Tools\mingw530_32
+    platform: x86
+    use_mingw: "true"
+    python_path: C:\Python37
+  - NAME: KItemViewsMSVC2015x64
+    module_name: KItemViews
+    module_repo: kitemviews.git
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015_64
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    platform: amd64
+    use_mingw: "false"
+    python_path: C:\Python37-x64
+  - NAME: KItemViewsMSVC2015x32
+    module_name: KItemViews
+    module_repo: kitemviews.git
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    platform: x86
+    use_mingw: "false"
+    python_path: C:\Python37
+  - NAME: KItemViewsMinGWx32
+    module_name: KItemViews
+    module_repo: kitemviews.git
     QT5: C:\Qt\%LatestLTSQtVersion%\mingw53_32
     COMPILER: C:\Qt\Tools\mingw530_32
     platform: x86
@@ -88,10 +112,10 @@ build_script:
 - cd %module_name%
 - mkdir .\build 
 - cd .\build
-- cmake -G %CMAKEGENERATOR% -DCMAKE_DEBUG_POSTFIX=d -DCMAKE_INSTALL_PREFIX=../../%module_name% -DCMAKE_BUILD_TYPE=DEBUG ../
+- cmake -G %CMAKEGENERATOR% -DCMAKE_DEBUG_POSTFIX=d -DCMAKE_INSTALL_PREFIX=../../KDEdeploy -DCMAKE_BUILD_TYPE=DEBUG ../
 - cmake --build .
 - cmake --build . --target install
-- cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../%module_name% -DCMAKE_BUILD_TYPE=RELEASE ../
+- cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../KDEdeploy -DCMAKE_BUILD_TYPE=RELEASE ../
 - cmake --build .
 - cmake --build . --target install
 - cd ..\..\
@@ -100,7 +124,7 @@ after_build:
 - if %use_mingw%==true set PATH=C:\Program Files\Git\usr\bin;%PATH%
 - if %use_mingw%==true (set archivename=mingw) else (set archivename=msvc2015)
 - if %platform%==x86 (set archivename=%archivename%_x86) else (set archivename=%archivename%_x64)
-- 7z a -tzip %module_name%.zip .\%module_name%\*
+- 7z a -tzip %module_name%.zip .\KDEdeploy\*
 
 artifacts:
 - path: '.\*.zip'
