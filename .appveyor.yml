@@ -218,21 +218,29 @@ before_build:
 - if %module_name%==KCodecs set PATH=%CD%\bin;%PATH%
 - if %module_name%==KArchive mkdir .\bzip2
 - if %module_name%==KArchive cd .\bzip2
-- if %module_name%==KArchive curl -k -L https://sourceforge.net/projects/gnuwin32/files/bzip2/1.0.5/bzip2-1.0.5-bin.zip --output bzip2.zip
+- if %module_name%==KArchive curl -k -L https://sourceforge.net/projects/gnuwin32/files/bzip2/1.0.5/bzip2-1.0.5-lib.zip --output bzip2.zip
 - if %module_name%==KArchive 7z x bzip2.zip
 - if %module_name%==KArchive del /F /Q bzip2.zip
-- if %module_name%==KArchive dir
-- if %module_name%==KArchive rem set PATH=%CD%;%PATH%
+- if %module_name%==KArchive set PATH=%CD%;%PATH%
 - if %module_name%==KArchive cd ..\
 - if %module_name%==KArchive mkdir .\liblzma
 - if %module_name%==KArchive cd .\liblzma
-- if %module_name%==KArchive curl -k -L https://tukaani.org/xz/xz-5.2.4.tar.gz --output liblzma.tar.gz
-- if %module_name%==KArchive 7z x liblzma.tar.gz
-- if %module_name%==KArchive del /F /Q liblzma.tar.gz
-- if %module_name%==KArchive 7z x liblzma.tar
-- if %module_name%==KArchive del /F /Q liblzma.tar
-- if %module_name%==KArchive dir
-- if %module_name%==KArchive set PATH=%CD%\liblzma;%PATH%
+- if %module_name%==KArchive curl -k -L https://tukaani.org/xz/xz-5.2.4-windows.zip --output liblzma.zip
+- if %module_name%==KArchive 7z x liblzma.zip
+- if %module_name%==KArchive del /F /Q liblzma.zip
+- if %module_name%==KArchive if %use_mingw%==true (ren bin_i686 lib) else (mkdir lib && mkdir bin)
+- if %module_name%==KArchive if %use_mingw%==false curl -k -L https://tukaani.org/xz/xz-5.2.4.tar.gz --output liblzma.tar.gz
+- if %module_name%==KArchive if %use_mingw%==false 7z x liblzma.tar.gz
+- if %module_name%==KArchive if %use_mingw%==false del /F /Q liblzma.tar.gz
+- if %module_name%==KArchive if %use_mingw%==false 7z x liblzma.tar
+- if %module_name%==KArchive dif %use_mingw%==false del /F /Q liblzma.tar
+- if %module_name%==KArchive if %use_mingw%==false cd xz-5.2.4\windows\vs2013
+- if %module_name%==KArchive if %platform%%==x86 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Debug /property:Platform=Win32 && xcopy /Y /I /K Debug\Win32\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Debug\Win32\liblzma_dll\*.lib ..\..\..\lib && xcopy /Y /I /K Debug\Win32\liblzma_dll\*.pdb ..\..\..\lib
+- if %module_name%==KArchive if %platform%%==x86 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Release /property:Platform=Win32 && xcopy /Y /I /K Release\Win32\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\Win32\liblzma_dll\*.lib ..\..\..\lib
+- if %module_name%==KArchive if %platform%%==amd64 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Debug /property:Platform=x64 && xcopy /Y /I /K Debug\x64\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Debug\x64\liblzma_dll\*.lib ..\..\..\lib && xcopy /Y /I /K Debug\x64\liblzma_dll\*.pdb ..\..\..\lib
+- if %module_name%==KArchive if %platform%%==amd64 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Release /property:Platform=x64 && xcopy /Y /I /K Release\x64\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\x64\liblzma_dll\*.lib ..\..\..\lib
+- if %module_name%==KArchive if %use_mingw%==false cd ..\..\..\
+- if %module_name%==KArchive set PATH=%CD%;%PATH%
 - if %module_name%==KArchive cd ..\
 - if %module_name%==KArchive git clone https://github.com/madler/zlib.git zlibBuild
 - if %module_name%==KArchive cd zlibBuild
@@ -257,15 +265,14 @@ before_build:
 - set PATH=%CD%\ECMbuild;%PATH%
 
 build_script:
-- echo KCodecs
 - git clone git://anongit.kde.org/%module_repo% %module_name%
 - cd %module_name%
 - mkdir .\build 
 - cd .\build
-- cmake -G %CMAKEGENERATOR% -DCMAKE_DEBUG_POSTFIX=d -DCMAKE_INSTALL_PREFIX=../../KDEdeploy -DCMAKE_BUILD_TYPE=DEBUG ../
+- cmake -G %CMAKEGENERATOR% -DCMAKE_DEBUG_POSTFIX=d -DCMAKE_INSTALL_PREFIX=../../KDEAPI -DCMAKE_BUILD_TYPE=DEBUG ../
 - cmake --build .
 - cmake --build . --target install
-- cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../KDEdeploy -DCMAKE_BUILD_TYPE=RELEASE ../
+- cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../KDEAPI -DCMAKE_BUILD_TYPE=RELEASE ../
 - cmake --build .
 - cmake --build . --target install
 - cd ..\..\
@@ -274,7 +281,7 @@ after_build:
 - if %use_mingw%==true set PATH=C:\Program Files\Git\usr\bin;%PATH%
 - if %use_mingw%==true (set archivename=mingw) else (set archivename=msvc2015)
 - if %platform%==x86 (set archivename=%archivename%_x86) else (set archivename=%archivename%_x64)
-- 7z a -tzip %module_name%.zip .\KDEdeploy\*
+- 7z a -tzip %module_name%.zip .\KDEAPI\
 
 artifacts:
 - path: '.\*.zip'
