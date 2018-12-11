@@ -210,24 +210,25 @@ before_build:
 - if not %use_mingw%==true call "%COMPILER%\vcvarsall.bat" %platform%
 - if %use_mingw%==true (set CMAKEGENERATOR="MinGW Makefiles") else (set CMAKEGENERATOR="NMake Makefiles")
 - if %use_mingw%==true set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
-- mkdir .\gperf
-- cd .\gperf
-- curl -k -L https://sourceforge.net/projects/gnuwin32/files/gperf/3.0.1/gperf-3.0.1-bin.zip --output gperf.zip
-- 7z x gperf.zip
-- set PATH=%CD%\bin;%PATH%
-- mkdir .\bzip2
-- cd .\bzip2
-- curl -k -L https://sourceforge.net/projects/gnuwin32/files/bzip2/1.0.5/bzip2-1.0.5-bin.zip --output bzip2.zip
-- 7z x bzip2.zip
-- set PATH=%CD%;%PATH%
-- cd ..\
-- mkdir .\liblzma
-- cd .\liblzma
-- curl -k -L https://tukaani.org/xz/xz-5.2.4.tar.gz --output liblzma.zip
-- 7z x liblzma.zip
-- dir
-- set PATH=%CD%;%PATH%
-- cd ..\
+- if %module_name%=KCodecs mkdir .\gperf
+- if %module_name%=KCodecs cd .\gperf
+- if %module_name%=KCodecs curl -k -L https://sourceforge.net/projects/gnuwin32/files/gperf/3.0.1/gperf-3.0.1-bin.zip --output gperf.zip
+- if %module_name%=KCodecs 7z x gperf.zip
+- if %module_name%=KCodecs set PATH=%CD%\bin;%PATH%
+- if %module_name%=KArchive mkdir .\bzip2
+- if %module_name%=KArchive cd .\bzip2
+- if %module_name%=KArchive curl -k -L https://sourceforge.net/projects/gnuwin32/files/bzip2/1.0.5/bzip2-1.0.5-bin.zip --output bzip2.zip
+- if %module_name%=KArchive 7z x bzip2.zip
+- if %module_name%=KArchive dir
+- if %module_name%=KArchive set PATH=%CD%;%PATH%
+- if %module_name%=KArchive cd ..\
+- if %module_name%=KArchive mkdir .\liblzma
+- if %module_name%=KArchive cd .\liblzma
+- if %module_name%=KArchive curl -k -L https://tukaani.org/xz/xz-5.2.4.tar.gz --output liblzma.zip
+- if %module_name%=KArchive 7z x liblzma.zip
+- if %module_name%=KArchive dir liblzma
+- if %module_name%=KArchive set PATH=%CD%\liblzma;%PATH%
+- if %module_name%=KArchive cd ..\
 - git clone git://anongit.kde.org/extra-cmake-modules ECM
 - cd ECM
 - mkdir .\build 
