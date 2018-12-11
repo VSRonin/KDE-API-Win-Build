@@ -33,6 +33,12 @@ before_build:
 - if not %use_mingw%==true call "%COMPILER%\vcvarsall.bat" %platform%
 - if %use_mingw%==true (set CMAKEGENERATOR="MinGW Makefiles") else (set CMAKEGENERATOR="NMake Makefiles")
 - if %use_mingw%==true set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
+- mkdir .\gperf
+- cd .\gperf
+- curl -k -L https://sourceforge.net/projects/gnuwin32/files/gperf/3.0.1/gperf-3.0.1-bin.zip --output gperf.zip
+- 7z x gperf.zip
+- set PATH=%CD%\bin;%PATH%
+- cd ..\
 - git.exe clone git://anongit.kde.org/extra-cmake-modules ECM
 - cd ECM
 - mkdir .\build 
@@ -44,6 +50,18 @@ before_build:
 - set PATH=%CD%\ECMbuild;%PATH%
 
 build_script:
+- echo KCodecs
+- git clone git://anongit.kde.org/kcodecs.git KCodecs
+- cd KCodecs
+- mkdir .\build 
+- cd .\build
+- cmake -G %CMAKEGENERATOR% -DCMAKE_DEBUG_POSTFIX=d -DCMAKE_INSTALL_PREFIX=../../KDEdeploy -DCMAKE_BUILD_TYPE=DEBUG ../
+- cmake --build .
+- cmake --build . --target install
+- cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../KDEdeploy -DCMAKE_BUILD_TYPE=RELEASE ../
+- cmake --build .
+- cmake --build . --target install
+- cd ..\..\
 - echo KItemModels
 - git clone git://anongit.kde.org/kitemmodels.git KItemModels
 - cd KItemModels
@@ -59,18 +77,6 @@ build_script:
 - echo KItemViews
 - git clone git://anongit.kde.org/kitemviews.git KItemViews
 - cd KItemViews
-- mkdir .\build 
-- cd .\build
-- cmake -G %CMAKEGENERATOR% -DCMAKE_DEBUG_POSTFIX=d -DCMAKE_INSTALL_PREFIX=../../KDEdeploy -DCMAKE_BUILD_TYPE=DEBUG ../
-- cmake --build .
-- cmake --build . --target install
-- cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../KDEdeploy -DCMAKE_BUILD_TYPE=RELEASE ../
-- cmake --build .
-- cmake --build . --target install
-- cd ..\..\
-- echo KCodecs
-- git clone git://anongit.kde.org/kcodecs.git KCodecs
-- cd KCodecs
 - mkdir .\build 
 - cd .\build
 - cmake -G %CMAKEGENERATOR% -DCMAKE_DEBUG_POSTFIX=d -DCMAKE_INSTALL_PREFIX=../../KDEdeploy -DCMAKE_BUILD_TYPE=DEBUG ../
