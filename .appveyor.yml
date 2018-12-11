@@ -220,36 +220,36 @@ before_build:
 - if %module_name%==KArchive curl -k -L https://sourceforge.net/projects/gnuwin32/files/bzip2/1.0.5/bzip2-1.0.5-bin.zip --output bzip2.zip
 - if %module_name%==KArchive 7z x bzip2.zip
 - if %module_name%==KArchive dir
-- if %module_name%==KArchive set PATH=%CD%;%PATH%
+- if %module_name%==KArchive rem set PATH=%CD%;%PATH%
 - if %module_name%==KArchive cd ..\
 - if %module_name%==KArchive mkdir .\liblzma
 - if %module_name%==KArchive cd .\liblzma
-- if %module_name%==KArchive curl -k -L https://tukaani.org/xz/xz-5.2.4.tar.gz --output liblzma.zip
+- if %module_name%==KArchive curl -k -L https://tukaani.org/xz/xz-5.2.4.tar.gz --output liblzma.tar.gz
 - if %module_name%==KArchive 7z x liblzma.tar.gz
 - if %module_name%==KArchive dir
 - if %module_name%==KArchive set PATH=%CD%\liblzma;%PATH%
 - if %module_name%==KArchive cd ..\
+- if %module_name%==KArchive git clone https://github.com/madler/zlib.git zlibBuild
+- if %module_name%==KArchive cd zlibBuild
+- if %module_name%==KArchive mkdir .\build 
+- if %module_name%==KArchive cd .\build
+- if %module_name%==KArchive cmake -G %CMAKEGENERATOR% -DBUILD_TESTING=OFF -DCMAKE_DEBUG_POSTFIX=d -DCMAKE_INSTALL_PREFIX=../../zlib -DCMAKE_BUILD_TYPE=DEBUG ../
+- if %module_name%==KArchive cmake --build .
+- if %module_name%==KArchive cmake --build . --target install
+- if %module_name%==KArchive cmake -G %CMAKEGENERATOR% -DBUILD_TESTING=OFF -DCMAKE_INSTALL_PREFIX=../../zlib -DCMAKE_BUILD_TYPE=RELEASE ../
+- if %module_name%==KArchive cmake --build .
+- if %module_name%==KArchive cmake --build . --target install
+- if %module_name%==KArchive cd ..\..\
+- if %module_name%==KArchive set PATH=%CD%\zlib;%PATH%
 - git clone git://anongit.kde.org/extra-cmake-modules ECM
 - cd ECM
 - mkdir .\build 
 - cd .\build
-- cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../ECMbuild -DCMAKE_BUILD_TYPE=RELEASE ../
+- cmake -G %CMAKEGENERATOR% -DBUILD_TESTING=OFF -DCMAKE_INSTALL_PREFIX=../../ECMbuild -DCMAKE_BUILD_TYPE=RELEASE ../
 - cmake --build .
 - cmake --build . --target install
 - cd ..\..\
 - set PATH=%CD%\ECMbuild;%PATH%
-- git clone https://github.com/madler/zlib.git zlibBuild
-- cd zlibBuild
-- mkdir .\build 
-- cd .\build
-- cmake -G %CMAKEGENERATOR% -DCMAKE_DEBUG_POSTFIX=d -DCMAKE_INSTALL_PREFIX=../../zlib -DCMAKE_BUILD_TYPE=DEBUG ../
-- cmake --build .
-- cmake --build . --target install
-- cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../zlib -DCMAKE_BUILD_TYPE=RELEASE ../
-- cmake --build .
-- cmake --build . --target install
-- cd ..\..\
-- set PATH=%CD%\zlib;%PATH%
 
 build_script:
 - echo KCodecs
