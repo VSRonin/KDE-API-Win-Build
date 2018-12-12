@@ -22,7 +22,7 @@ before_build:
 - echo on
 - call "%COMPILER%\vcvarsall.bat" %comp_platform%
 - set CMAKEGENERATOR="NMake Makefiles"
-- cd bzip2
+- mkdir bzip2 && cd bzip2
 - mkdir bin && mkdir lib && mkdir include
 - git clone https://git.code.sf.net/p/bzip2/bzip2 sources
 - cd sources
