@@ -9,9 +9,7 @@ environment:
   global:
     LatestLTSQtVersion: 5.9
   matrix:
-  - module_name: KArchive
-    module_repo: karchive.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015_64
+  - QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015_64
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
     comp_platform: amd64
 matrix:
@@ -19,10 +17,10 @@ matrix:
 
 before_build:
 - pushd c:\
-- %QT5%\bin\qtenv2.bat
+- call "%QT5%\bin\qtenv2.bat"
 - popd
 - echo on
-- if not %use_mingw%==true call "%COMPILER%\vcvarsall.bat" %comp_platform%
+- call "%COMPILER%\vcvarsall.bat" %comp_platform%
 - set CMAKEGENERATOR="NMake Makefiles"
 - mkdir .\bzip2
 - cd .\bzip2
