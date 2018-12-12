@@ -241,7 +241,8 @@ before_build:
 - if %module_name%==KArchive if %use_mingw%==false cd xz-5.2.4\windows\vs2013
 - if %module_name%==KArchive if %comp_platform%==x86 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Debug /property:Platform=Win32 && xcopy /Y /I /K Debug\Win32\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Debug\Win32\liblzma_dll\*.lib ..\..\..\lib && xcopy /Y /I /K Debug\Win32\liblzma_dll\*.pdb ..\..\..\lib
 - if %module_name%==KArchive if %comp_platform%==amd64 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Debug /property:Platform=x64 && xcopy /Y /I /K Debug\x64\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Debug\x64\liblzma_dll\*.lib ..\..\..\lib && xcopy /Y /I /K Debug\x64\liblzma_dll\*.pdb ..\..\..\lib
-- if %module_name%==KArchive if %use_mingw%==false for %a in (..\..\..\lib\*) do ren "%~a" "%~nad%~xa" && for %a in (..\..\..\bin\*) do ren "%~a" "%~nad%~xa"
+- if %module_name%==KArchive if %use_mingw%==false for %a in (..\..\..\lib\*) do ren "%~a" "%~nad%~xa"
+- if %module_name%==KArchive if %use_mingw%==false  for %a in (..\..\..\bin\*) do ren "%~a" "%~nad%~xa"
 - if %module_name%==KArchive if %comp_platform%==x86 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Release /property:Platform=Win32 && xcopy /Y /I /K Release\Win32\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\Win32\liblzma_dll\*.lib ..\..\..\lib
 - if %module_name%==KArchive if %comp_platform%==amd64 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Release /property:Platform=x64 && xcopy /Y /I /K Release\x64\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\x64\liblzma_dll\*.lib ..\..\..\lib
 - if %module_name%==KArchive if %use_mingw%==false cd ..\..\..\
