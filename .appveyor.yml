@@ -16,9 +16,9 @@ matrix:
   fast_finish: true
 
 before_build:
-- pushd c:\
+- set originalWD=%CD%
 - call "%QT5%\bin\qtenv2.bat"
-- popd
+- cd %originalWD%
 - echo on
 - call "%COMPILER%\vcvarsall.bat" %comp_platform%
 - set CMAKEGENERATOR="NMake Makefiles"
