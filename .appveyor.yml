@@ -22,11 +22,19 @@ before_build:
 - echo on
 - call "%COMPILER%\vcvarsall.bat" %comp_platform%
 - set CMAKEGENERATOR="NMake Makefiles"
-- mkdir .\bzip2
-- cd .\bzip2
-- curl -k -L https://sourceforge.net/projects/gnuwin32/files/bzip2/1.0.5/bzip2-1.0.5-bin.zip --output bzip2.zip
-- 7z x bzip2.zip
-- del /F /Q bzip2.zip
+- cd bzip2
+- mkdir bin && mkdir lib && mkdir include
+- git clone https://git.code.sf.net/p/bzip2/bzip2 sources
+- cd sources
+- devenv /upgrade libbz2.dsp
+- devenv libbz2.vcxproj /build Release
+- xcopy /Y /I /K *.dll ..\bin
+- xcopy /Y /I /K bzlib.h ..\include
+- xcopy /Y /I /K Release\*.lib ..\lib
+- xcopy /Y /I /K Release\*.a ..\lib
+- xcopy /Y /I /K Release\*.o ..\lib
+- cd ..\
+- rmdir sources /S /Q
 - set PATH=%CD%;%PATH%
 - cd ..\
 - git clone https://github.com/madler/zlib.git zlibBuild
