@@ -17,14 +17,6 @@ environment:
     comp_platform: x86
     use_mingw: "false"
     python_path: C:\Python37
-  - NAME: KArchiveMSVC2015x64
-    module_name: KArchive
-    module_repo: karchive.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015_64
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
-    comp_platform: amd64
-    use_mingw: "false"
-    python_path: C:\Python37-x64
   - NAME: KArchiveMinGWx32
     module_name: KArchive
     module_repo: karchive.git
@@ -33,6 +25,14 @@ environment:
     comp_platform: x86
     use_mingw: "true"
     python_path: C:\Python37
+  - NAME: KArchiveMSVC2015x64
+    module_name: KArchive
+    module_repo: karchive.git
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015_64
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    comp_platform: amd64
+    use_mingw: "false"
+    python_path: C:\Python37-x64
   - NAME: KCodecsMSVC2015x64
     module_name: KCodecs
     module_repo: kcodecs.git
@@ -218,13 +218,13 @@ before_build:
 - if %module_name%==KCodecs cd .\gperf
 - if %module_name%==KCodecs curl -k -L https://sourceforge.net/projects/gnuwin32/files/gperf/3.0.1/gperf-3.0.1-bin.zip --output gperf.zip
 - if %module_name%==KCodecs 7z x gperf.zip
-- if %module_name%==KCodecs del /F /Q gperf.zip
+- if %module_name%==KCodecs move /Y gperf.zip ..\
 - if %module_name%==KCodecs set PATH=%CD%\bin;%PATH%
 - if %module_name%==KArchive mkdir .\bzip2
 - if %module_name%==KArchive cd .\bzip2
 - if %module_name%==KArchive curl -k -L https://sourceforge.net/projects/gnuwin32/files/bzip2/1.0.5/bzip2-1.0.5-bin.zip --output bzip2.zip
 - if %module_name%==KArchive 7z x bzip2.zip
-- if %module_name%==KArchive del /F /Q bzip2.zip
+- if %module_name%==KArchive move /Y bzip2.zip ..\
 - if %module_name%==KArchive set PATH=%CD%;%PATH%
 - if %module_name%==KArchive cd ..\
 - if %module_name%==KArchive mkdir .\liblzma
@@ -240,12 +240,16 @@ before_build:
 - if %module_name%==KArchive if %use_mingw%==false del /F /Q liblzma.tar
 - if %module_name%==KArchive if %use_mingw%==false cd xz-5.2.4\windows\vs2013
 - if %module_name%==KArchive if %comp_platform%==x86 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Debug /property:Platform=Win32 && xcopy /Y /I /K Debug\Win32\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Debug\Win32\liblzma_dll\*.lib ..\..\..\lib && xcopy /Y /I /K Debug\Win32\liblzma_dll\*.pdb ..\..\..\lib
-- if %module_name%==KArchive if %comp_platform%==x86 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Release /property:Platform=Win32 && xcopy /Y /I /K Release\Win32\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\Win32\liblzma_dll\*.lib ..\..\..\lib
 - if %module_name%==KArchive if %comp_platform%==amd64 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Debug /property:Platform=x64 && xcopy /Y /I /K Debug\x64\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Debug\x64\liblzma_dll\*.lib ..\..\..\lib && xcopy /Y /I /K Debug\x64\liblzma_dll\*.pdb ..\..\..\lib
+- if %module_name%==KArchive if %use_mingw%==false for %a in (..\..\..\lib\*) do ren "%~a" "%~nad%~xa" && for %a in (..\..\..\bin\*) do ren "%~a" "%~nad%~xa"
+- if %module_name%==KArchive if %comp_platform%==x86 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Release /property:Platform=Win32 && xcopy /Y /I /K Release\Win32\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\Win32\liblzma_dll\*.lib ..\..\..\lib
 - if %module_name%==KArchive if %comp_platform%==amd64 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Release /property:Platform=x64 && xcopy /Y /I /K Release\x64\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\x64\liblzma_dll\*.lib ..\..\..\lib
 - if %module_name%==KArchive if %use_mingw%==false cd ..\..\..\
 - if %module_name%==KArchive set PATH=%CD%;%PATH%
 - if %module_name%==KArchive cd ..\
+- if %module_name%==KArchive 7z a -tzip liblzma.zip .\liblzma\include\
+- if %module_name%==KArchive 7z a -tzip liblzma.zip .\liblzma\lib\
+- if %module_name%==KArchive 7z a -tzip liblzma.zip .\liblzma\bin\
 - if %module_name%==KArchive git clone https://github.com/madler/zlib.git zlibBuild
 - if %module_name%==KArchive cd zlibBuild
 - if %module_name%==KArchive mkdir .\build 
@@ -257,6 +261,7 @@ before_build:
 - if %module_name%==KArchive cmake --build .
 - if %module_name%==KArchive cmake --build . --target install
 - if %module_name%==KArchive cd ..\..\
+- if %module_name%==KArchive 7z a -tzip zlib.zip .\zlib\*
 - if %module_name%==KArchive set PATH=%CD%\zlib;%PATH%
 - git clone git://anongit.kde.org/extra-cmake-modules ECM
 - cd ECM
@@ -273,10 +278,10 @@ build_script:
 - cd %module_name%
 - mkdir .\build 
 - cd .\build
-- cmake -G %CMAKEGENERATOR% -DCMAKE_DEBUG_POSTFIX=d -DCMAKE_INSTALL_PREFIX=../../KDEAPI -DCMAKE_BUILD_TYPE=DEBUG ../
+- cmake -G %CMAKEGENERATOR% -DBUILD_TESTING=OFF -DCMAKE_DEBUG_POSTFIX=d -DCMAKE_INSTALL_PREFIX=../../KDEAPI -DCMAKE_BUILD_TYPE=DEBUG ../
 - cmake --build .
 - cmake --build . --target install
-- cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../KDEAPI -DCMAKE_BUILD_TYPE=RELEASE ../
+- cmake -G %CMAKEGENERATOR% -DBUILD_TESTING=OFF -DCMAKE_INSTALL_PREFIX=../../KDEAPI -DCMAKE_BUILD_TYPE=RELEASE ../
 - cmake --build .
 - cmake --build . --target install
 - cd ..\..\
@@ -285,7 +290,7 @@ after_build:
 - if %use_mingw%==true set PATH=C:\Program Files\Git\usr\bin;%PATH%
 - if %use_mingw%==true (set archivename=mingw) else (set archivename=msvc2015)
 - if %comp_platform%==x86 (set archivename=%archivename%_x86) else (set archivename=%archivename%_x64)
-- 7z a -tzip %module_name%.zip .\KDEAPI\
+- 7z a -tzip %module_name%.zip .\KDEAPI\*
 
 artifacts:
 - path: '.\*.zip'
