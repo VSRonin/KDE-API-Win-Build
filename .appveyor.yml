@@ -208,7 +208,7 @@ matrix:
 before_build:
 - set PATH=%COMPILER%\bin;%QT5%\bin;%python_path%;%PATH%
 - pushd c:\
-- %QT5%\bin\qtenv2.bat
+- call "%QT5%\bin\qtenv2.bat"
 - popd
 - echo on
 - if not %use_mingw%==true call "%COMPILER%\vcvarsall.bat" %comp_platform%
