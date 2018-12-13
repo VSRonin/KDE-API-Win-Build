@@ -9,14 +9,6 @@ environment:
   global:
     LatestLTSQtVersion: 5.9
   matrix:
-  - NAME: KArchiveMSVC2015x32
-    module_name: KArchive
-    module_repo: karchive.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
-    comp_platform: x86
-    use_mingw: "false"
-    python_path: C:\Python37
   - NAME: KArchiveMinGWx32
     module_name: KArchive
     module_repo: karchive.git
@@ -24,6 +16,14 @@ environment:
     COMPILER: C:\Qt\Tools\mingw530_32
     comp_platform: x86
     use_mingw: "true"
+    python_path: C:\Python37
+  - NAME: KArchiveMSVC2015x32
+    module_name: KArchive
+    module_repo: karchive.git
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    comp_platform: x86
+    use_mingw: "false"
     python_path: C:\Python37
   - NAME: KArchiveMSVC2015x64
     module_name: KArchive
@@ -253,7 +253,7 @@ before_build:
 - if %need_liblzma%==true cd ..\
 - if %need_liblzma%==true 7z a -tzip liblzma.zip .\liblzma\include\
 - if %need_liblzma%==true 7z a -tzip liblzma.zip .\liblzma\lib\
-- if %need_liblzma%==true 7z a -tzip liblzma.zip .\liblzma\bin\
+- if %need_liblzma%==true if %use_mingw%==false 7z a -tzip liblzma.zip .\liblzma\bin\
 - if %need_zlib%==true git clone https://github.com/madler/zlib.git zlibBuild
 - if %need_zlib%==true cd zlibBuild
 - if %need_zlib%==true mkdir .\build && cd .\build
