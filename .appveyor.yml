@@ -206,6 +206,14 @@ matrix:
   fast_finish: true
 
 before_build:
+- set need_gperf=false
+- if %module_name%==KCodecs set need_gperf=true
+- set need_bzip2=false
+- if %module_name%==KArchive set need_bzip2=true
+- set need_zlib=false
+- if %module_name%==KArchive set need_zlib=true
+- set need_liblzma=false
+- if %module_name%==KArchive set need_liblzma=true
 - set PATH=%python_path%;%PATH%
 - set originalWD=%CD%
 - call "%QT5%\bin\qtenv2.bat"
@@ -214,56 +222,47 @@ before_build:
 - if not %use_mingw%==true call "%COMPILER%\vcvarsall.bat" %comp_platform%
 - if %use_mingw%==true (set CMAKEGENERATOR="MinGW Makefiles") else (set CMAKEGENERATOR="NMake Makefiles")
 - if %use_mingw%==true set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
-- if %module_name%==KCodecs mkdir .\gperf
-- if %module_name%==KCodecs cd .\gperf
-- if %module_name%==KCodecs curl -k -L https://sourceforge.net/projects/gnuwin32/files/gperf/3.0.1/gperf-3.0.1-bin.zip --output gperf.zip
-- if %module_name%==KCodecs 7z x gperf.zip
-- if %module_name%==KCodecs move /Y gperf.zip ..\
-- if %module_name%==KCodecs set PATH=%CD%\bin;%PATH%
-- if %module_name%==KArchive mkdir .\bzip2
-- if %module_name%==KArchive cd .\bzip2
-- if %module_name%==KArchive curl -k -L https://sourceforge.net/projects/gnuwin32/files/bzip2/1.0.5/bzip2-1.0.5-bin.zip --output bzip2.zip
-- if %module_name%==KArchive 7z x bzip2.zip
-- if %module_name%==KArchive move /Y bzip2.zip ..\
-- if %module_name%==KArchive set PATH=%CD%;%PATH%
-- if %module_name%==KArchive cd ..\
-- if %module_name%==KArchive mkdir .\liblzma
-- if %module_name%==KArchive cd .\liblzma
-- if %module_name%==KArchive curl -k -L https://tukaani.org/xz/xz-5.2.4-windows.zip --output liblzma.zip
-- if %module_name%==KArchive 7z x liblzma.zip
-- if %module_name%==KArchive del /F /Q liblzma.zip
-- if %module_name%==KArchive if %use_mingw%==true (ren bin_i686 lib) else (mkdir lib && mkdir bin)
-- if %module_name%==KArchive if %use_mingw%==false curl -k -L https://tukaani.org/xz/xz-5.2.4.tar.gz --output liblzma.tar.gz
-- if %module_name%==KArchive if %use_mingw%==false 7z x liblzma.tar.gz
-- if %module_name%==KArchive if %use_mingw%==false del /F /Q liblzma.tar.gz
-- if %module_name%==KArchive if %use_mingw%==false 7z x liblzma.tar
-- if %module_name%==KArchive if %use_mingw%==false del /F /Q liblzma.tar
-- if %module_name%==KArchive if %use_mingw%==false cd xz-5.2.4\windows\vs2013
-- if %module_name%==KArchive if %comp_platform%==x86 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Debug /property:Platform=Win32 && xcopy /Y /I /K Debug\Win32\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Debug\Win32\liblzma_dll\*.lib ..\..\..\lib && xcopy /Y /I /K Debug\Win32\liblzma_dll\*.pdb ..\..\..\lib
-- if %module_name%==KArchive if %comp_platform%==amd64 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Debug /property:Platform=x64 && xcopy /Y /I /K Debug\x64\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Debug\x64\liblzma_dll\*.lib ..\..\..\lib && xcopy /Y /I /K Debug\x64\liblzma_dll\*.pdb ..\..\..\lib
-- if %module_name%==KArchive if %use_mingw%==false for %a in (..\..\..\lib\*) do ren "%~a" "%~nad%~xa"
-- if %module_name%==KArchive if %use_mingw%==false  for %a in (..\..\..\bin\*) do ren "%~a" "%~nad%~xa"
-- if %module_name%==KArchive if %comp_platform%==x86 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Release /property:Platform=Win32 && xcopy /Y /I /K Release\Win32\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\Win32\liblzma_dll\*.lib ..\..\..\lib
-- if %module_name%==KArchive if %comp_platform%==amd64 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Release /property:Platform=x64 && xcopy /Y /I /K Release\x64\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\x64\liblzma_dll\*.lib ..\..\..\lib
-- if %module_name%==KArchive if %use_mingw%==false cd ..\..\..\
-- if %module_name%==KArchive set PATH=%CD%;%PATH%
-- if %module_name%==KArchive cd ..\
-- if %module_name%==KArchive 7z a -tzip liblzma.zip .\liblzma\include\
-- if %module_name%==KArchive 7z a -tzip liblzma.zip .\liblzma\lib\
-- if %module_name%==KArchive 7z a -tzip liblzma.zip .\liblzma\bin\
-- if %module_name%==KArchive git clone https://github.com/madler/zlib.git zlibBuild
-- if %module_name%==KArchive cd zlibBuild
-- if %module_name%==KArchive mkdir .\build 
-- if %module_name%==KArchive cd .\build
-- if %module_name%==KArchive cmake -G %CMAKEGENERATOR% -DCMAKE_DEBUG_POSTFIX=d -DCMAKE_INSTALL_PREFIX=../../zlib -DCMAKE_BUILD_TYPE=DEBUG ../
-- if %module_name%==KArchive cmake --build .
-- if %module_name%==KArchive cmake --build . --target install
-- if %module_name%==KArchive cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../zlib -DCMAKE_BUILD_TYPE=RELEASE ../
-- if %module_name%==KArchive cmake --build .
-- if %module_name%==KArchive cmake --build . --target install
-- if %module_name%==KArchive cd ..\..\
-- if %module_name%==KArchive 7z a -tzip zlib.zip .\zlib\*
-- if %module_name%==KArchive set PATH=%CD%\zlib;%PATH%
+- if %need_gperf%==true mkdir .\gperf && cd .\gperf
+- if %need_gperf%==true curl -k -L https://sourceforge.net/projects/gnuwin32/files/gperf/3.0.1/gperf-3.0.1-bin.zip --output gperf.zip
+- if %need_gperf%==true 7z x gperf.zip
+- if %need_gperf%==true move /Y gperf.zip ..\
+- if %need_gperf%==true set PATH=%CD%\bin;%PATH%
+- if %need_gperf%==true cd ..\
+- if %need_bzip2%==true mkdir .\bzip2
+- if %need_bzip2%==true cd .\bzip2
+- if %need_bzip2%==true curl -k -L https://sourceforge.net/projects/gnuwin32/files/bzip2/1.0.5/bzip2-1.0.5-bin.zip --output bzip2.zip
+- if %need_bzip2%==true 7z x bzip2.zip
+- if %need_bzip2%==true move /Y bzip2.zip ..\
+- if %need_bzip2%==true set PATH=%CD%;%PATH%
+- if %need_bzip2%==true cd ..\
+- if %need_liblzma%==true mkdir .\liblzma && cd .\liblzma
+- if %need_liblzma%==true curl -k -L https://tukaani.org/xz/xz-5.2.4-windows.zip --output liblzma.zip
+- if %need_liblzma%==true 7z x liblzma.zip
+- if %need_liblzma%==true del /F /Q liblzma.zip
+- if %need_liblzma%==true if %use_mingw%==true (ren bin_i686 lib) else (mkdir lib && mkdir bin)
+- if %need_liblzma%==true if %use_mingw%==false curl -k -L https://tukaani.org/xz/xz-5.2.4.tar.gz --output liblzma.tar.gz
+- if %need_liblzma%==true if %use_mingw%==false 7z x liblzma.tar.gz
+- if %need_liblzma%==true if %use_mingw%==false del /F /Q liblzma.tar.gz
+- if %need_liblzma%==true if %use_mingw%==false 7z x liblzma.tar
+- if %need_liblzma%==true if %use_mingw%==false del /F /Q liblzma.tar
+- if %need_liblzma%==true if %use_mingw%==false cd xz-5.2.4\windows\vs2013
+- if %need_liblzma%==true if %comp_platform%==x86 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Release /property:Platform=Win32 && xcopy /Y /I /K Release\Win32\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\Win32\liblzma_dll\*.lib ..\..\..\lib
+- if %need_liblzma%==true if %comp_platform%==amd64 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Release /property:Platform=x64 && xcopy /Y /I /K Release\x64\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\x64\liblzma_dll\*.lib ..\..\..\lib
+- if %need_liblzma%==true if %use_mingw%==false cd ..\..\..\
+- if %need_liblzma%==true set PATH=%CD%;%PATH%
+- if %need_liblzma%==true cd ..\
+- if %need_liblzma%==true 7z a -tzip liblzma.zip .\liblzma\include\
+- if %need_liblzma%==true 7z a -tzip liblzma.zip .\liblzma\lib\
+- if %need_liblzma%==true 7z a -tzip liblzma.zip .\liblzma\bin\
+- if %need_zlib%==true git clone https://github.com/madler/zlib.git zlibBuild
+- if %need_zlib%==true cd zlibBuild
+- if %need_zlib%==true mkdir .\build && cd .\build
+- if %need_zlib%==true cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../zlib -DCMAKE_BUILD_TYPE=RELEASE ../
+- if %need_zlib%==true cmake --build .
+- if %need_zlib%==true cmake --build . --target install
+- if %need_zlib%==true cd ..\..\
+- if %need_zlib%==true 7z a -tzip zlib.zip .\zlib\*
+- if %need_zlib%==true set PATH=%CD%\zlib;%PATH%
 - git clone git://anongit.kde.org/extra-cmake-modules ECM
 - cd ECM
 - mkdir .\build 
