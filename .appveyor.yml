@@ -214,7 +214,7 @@ before_build:
 - if %use_mingw%==true set need_bzip2=false
 - set need_zlib=false
 - if %module_name%==KArchive set need_zlib=true
-- need_liblzma=false
+- set need_liblzma=false
 - if %module_name%==KArchive set need_liblzma=true
 - set PATH=%boost_path%;%python_path%;%python_path%\Scripts%PATH%
 - python -m pip install -U pip
