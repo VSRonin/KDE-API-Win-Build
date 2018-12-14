@@ -10,30 +10,6 @@ environment:
     LatestLTSQtVersion: 5.9
     boost_path: C:\Libraries\boost_1_67_0
   matrix:
-  - NAME: KImageFormatsMSVC2015x64
-    module_name: KImageFormats
-    module_repo: kimageformats.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015_64
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
-    comp_platform: amd64
-    use_mingw: "false"
-    python_path: C:\Python37-x64
-  - NAME: KImageFormatsMSVC2015x32
-    module_name: KImageFormats
-    module_repo: kimageformats.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
-    comp_platform: x86
-    use_mingw: "false"
-    python_path: C:\Python37
-  - NAME: KImageFormatsMinGWx32
-    module_name: KImageFormats
-    module_repo: kimageformats.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\mingw53_32
-    COMPILER: C:\Qt\Tools\mingw530_32
-    comp_platform: x86
-    use_mingw: "true"
-    python_path: C:\Python37
   - NAME: KArchiveMSVC2015x64
     module_name: KArchive
     module_repo: karchive.git
@@ -231,8 +207,6 @@ matrix:
   fast_finish: true
 
 before_build:
-- set need_OpenEXR=false
-- if %module_name%==KImageFormats set need_OpenEXR=true
 - set need_gperf=false
 - if %module_name%==KCodecs set need_gperf=true
 - set need_bzip2=false
@@ -240,8 +214,6 @@ before_build:
 - if %use_mingw%==true set need_bzip2=false
 - set need_zlib=false
 - if %module_name%==KArchive set need_zlib=true
-- if %need_OpenEXR%==true set need_zlib=true
-- set need_liblzma=false
 - if %module_name%==KArchive set need_liblzma=true
 - set PATH=%boost_path%;%python_path%;%python_path%\Scripts%PATH%
 - python -m pip install -U pip
@@ -300,15 +272,6 @@ before_build:
 - if %need_zlib%==true cd ..\..\
 - if %need_zlib%==true 7z a -tzip zlib.zip .\zlib\*
 - if %need_zlib%==true set PATH=%CD%\zlib;%PATH%
-- if %need_OpenEXR%==true git clone https://github.com/openexr/openexr.git OpenEXRsrc
-- if %need_OpenEXR%==true cd OpenEXRsrc
-- if %need_OpenEXR%==true mkdir .\build && cd .\build
-- if %need_OpenEXR%==true cmake -G %CMAKEGENERATOR% -DOPENEXR_BUILD_PYTHON_LIBS=OFF -DOPENEXR_ENABLE_TESTS=OFF -DCMAKE_INSTALL_PREFIX=../../OpenEXR -DCMAKE_BUILD_TYPE=RELEASE ../
-- if %need_OpenEXR%==true cmake --build .
-- if %need_OpenEXR%==true cmake --build . --target install
-- if %need_OpenEXR%==true cd ..\..\
-- if %need_OpenEXR%==true 7z a -tzip OpenEXR.zip .\OpenEXR\*
-- if %need_OpenEXR%==true set PATH=%CD%\OpenEXR;%PATH%
 - git clone git://anongit.kde.org/extra-cmake-modules ECM
 - cd ECM
 - mkdir .\build 
@@ -334,8 +297,6 @@ build_script:
 
 after_build:
 - if %use_mingw%==true set PATH=C:\Program Files\Git\usr\bin;%PATH%
-- if %use_mingw%==true (set archivename=mingw) else (set archivename=msvc2015)
-- if %comp_platform%==x86 (set archivename=%archivename%_x86) else (set archivename=%archivename%_x64)
 - 7z a -tzip %module_name%.zip .\KDEAPI\*
 
 artifacts:
