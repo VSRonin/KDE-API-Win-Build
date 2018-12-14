@@ -214,6 +214,7 @@ before_build:
 - if %use_mingw%==true set need_bzip2=false
 - set need_zlib=false
 - if %module_name%==KArchive set need_zlib=true
+- need_liblzma=false
 - if %module_name%==KArchive set need_liblzma=true
 - set PATH=%boost_path%;%python_path%;%python_path%\Scripts%PATH%
 - python -m pip install -U pip
@@ -225,26 +226,30 @@ before_build:
 - if not %use_mingw%==true call "%COMPILER%\vcvarsall.bat" %comp_platform%
 - if %use_mingw%==true (set CMAKEGENERATOR="MinGW Makefiles") else (set CMAKEGENERATOR="NMake Makefiles")
 - if %use_mingw%==true set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
-- if %need_gperf%==true mkdir .\gperf && cd .\gperf
+- if %need_gperf%==true mkdir .\gperf
+- if %need_gperf%==true cd .\gperf
 - if %need_gperf%==true curl -k -L https://sourceforge.net/projects/gnuwin32/files/gperf/3.0.1/gperf-3.0.1-bin.zip --output gperf.zip
 - if %need_gperf%==true 7z x gperf.zip
 - if %need_gperf%==true move /Y gperf.zip ..\
 - if %need_gperf%==true set PATH=%CD%\bin;%PATH%
 - if %need_gperf%==true cd ..\
-- if %need_bzip2%==true mkdir .\bzip2src && cd .\bzip2src
+- if %need_bzip2%==true mkdir .\bzip2src
+- if %need_bzip2%==true cd .\bzip2src
 - if %need_bzip2%==true curl -k -L https://sourceforge.net/projects/gnuwin32/files/bzip2/1.0.5/bzip2-1.0.5-src.zip --output bzip2.zip
 - if %need_bzip2%==true 7z x bzip2.zip
 - if %need_bzip2%==true del /F /Q  bzip2.zip
 - if %need_bzip2%==true cd src\bzip2\1.0.5\bzip2-1.0.5\
 - if %need_bzip2%==true copy /Y %originalWD%\bzip2CMakeLists.txt CMakeLists.txt
-- if %need_bzip2%==true mkdir build && cd build
+- if %need_bzip2%==true mkdir build
+- if %need_bzip2%==true cd build
 - if %need_bzip2%==true cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../../../../../bzip2 -DCMAKE_BUILD_TYPE=RELEASE ../
 - if %need_bzip2%==true cmake --build .
 - if %need_bzip2%==true cmake --build . --target install
 - if %need_bzip2%==true cd ..\..\..\..\..\..\
 - if %need_bzip2%==true set PATH=%CD%\bzip2;%PATH%
 - if %need_bzip2%==true 7z a -tzip bzip2.zip .\bzip2\*
-- if %need_liblzma%==true mkdir .\liblzma && cd .\liblzma
+- if %need_liblzma%==true mkdir .\liblzma
+- if %need_liblzma%==true cd .\liblzma
 - if %need_liblzma%==true curl -k -L https://tukaani.org/xz/xz-5.2.4-windows.zip --output liblzma.zip
 - if %need_liblzma%==true 7z x liblzma.zip
 - if %need_liblzma%==true del /F /Q liblzma.zip
@@ -255,8 +260,8 @@ before_build:
 - if %need_liblzma%==true if %use_mingw%==false 7z x liblzma.tar
 - if %need_liblzma%==true if %use_mingw%==false del /F /Q liblzma.tar
 - if %need_liblzma%==true if %use_mingw%==false cd xz-5.2.4\windows\vs2013
-- if %need_liblzma%==true if %comp_platform%==x86 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Release /property:Platform=Win32 && xcopy /Y /I /K Release\Win32\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\Win32\liblzma_dll\*.lib ..\..\..\lib
-- if %need_liblzma%==true if %comp_platform%==amd64 if %use_mingw%==false msbuild xz_win.sln /property:Configuration=Release /property:Platform=x64 && xcopy /Y /I /K Release\x64\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\x64\liblzma_dll\*.lib ..\..\..\lib
+- if %need_liblzma%==true if %comp_platform%==x86 if %use_mingw%==false (msbuild xz_win.sln /property:Configuration=Release /property:Platform=Win32 && xcopy /Y /I /K Release\Win32\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\Win32\liblzma_dll\*.lib ..\..\..\lib)
+- if %need_liblzma%==true if %comp_platform%==amd64 if %use_mingw%==false (msbuild xz_win.sln /property:Configuration=Release /property:Platform=x64 && xcopy /Y /I /K Release\x64\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\x64\liblzma_dll\*.lib ..\..\..\lib)
 - if %need_liblzma%==true if %use_mingw%==false cd ..\..\..\
 - if %need_liblzma%==true set PATH=%CD%;%PATH%
 - if %need_liblzma%==true cd ..\
@@ -265,7 +270,8 @@ before_build:
 - if %need_liblzma%==true if %use_mingw%==false 7z a -tzip liblzma.zip .\liblzma\bin\
 - if %need_zlib%==true git clone https://github.com/madler/zlib.git zlibBuild
 - if %need_zlib%==true cd zlibBuild
-- if %need_zlib%==true mkdir .\build && cd .\build
+- if %need_zlib%==true mkdir .\build
+- if %need_zlib%==true cd .\build
 - if %need_zlib%==true cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../zlib -DCMAKE_BUILD_TYPE=RELEASE ../
 - if %need_zlib%==true cmake --build .
 - if %need_zlib%==true cmake --build . --target install
