@@ -10,6 +10,30 @@ environment:
     LatestLTSQtVersion: 5.9
     boost_path: C:\Libraries\boost_1_67_0
   matrix:
+  - NAME: KImageFormatsMSVC2015x64
+    module_name: KImageFormats
+    module_repo: kimageformats.git
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015_64
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    comp_platform: amd64
+    use_mingw: "false"
+    python_path: C:\Python37-x64
+  - NAME: KImageFormatsMSVC2015x32
+    module_name: KImageFormats
+    module_repo: kimageformats.git
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    comp_platform: x86
+    use_mingw: "false"
+    python_path: C:\Python37
+  - NAME: KImageFormatsMinGWx32
+    module_name: KImageFormats
+    module_repo: kimageformats.git
+    QT5: C:\Qt\%LatestLTSQtVersion%\mingw53_32
+    COMPILER: C:\Qt\Tools\mingw530_32
+    comp_platform: x86
+    use_mingw: "true"
+    python_path: C:\Python37
   - NAME: KArchiveMSVC2015x64
     module_name: KArchive
     module_repo: karchive.git
@@ -197,30 +221,6 @@ environment:
   - NAME: KIdleTimeMinGWx32
     module_name: KIdleTime
     module_repo: kidletime.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\mingw53_32
-    COMPILER: C:\Qt\Tools\mingw530_32
-    comp_platform: x86
-    use_mingw: "true"
-    python_path: C:\Python37
-  - NAME: KImageFormatsMSVC2015x64
-    module_name: KImageFormats
-    module_repo: kimageformats.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015_64
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
-    comp_platform: amd64
-    use_mingw: "false"
-    python_path: C:\Python37-x64
-  - NAME: KImageFormatsMSVC2015x32
-    module_name: KImageFormats
-    module_repo: kimageformats.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
-    comp_platform: x86
-    use_mingw: "false"
-    python_path: C:\Python37
-  - NAME: KImageFormatsMinGWx32
-    module_name: KImageFormats
-    module_repo: kimageformats.git
     QT5: C:\Qt\%LatestLTSQtVersion%\mingw53_32
     COMPILER: C:\Qt\Tools\mingw530_32
     comp_platform: x86
