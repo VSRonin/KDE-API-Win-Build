@@ -144,6 +144,8 @@ matrix:
   fast_finish: true
 
 before_build:
+- dir "C:\Program Files (x86)\Microsoft Visual Studio\"
+- dir "C:\Program Files (x86)\Microsoft Visual Studio*"
 - set need_gperf=false
 - if %module_name%==KCodecs set need_gperf=true
 - set need_bzip2=false
