@@ -2,205 +2,142 @@ version: '1.0.0.{build}'
 branches:
   only:
     - master
+    - msvc2017
 
-image: Visual Studio 2015
+image: Visual Studio 2017
 clone_depth: 1
 environment:
   global:
-    LatestLTSQtVersion: 5.9
-    boost_path: C:\Libraries\boost_1_67_0
+    LatestLTSQtVersion: 5.12
+    boost_path: C:\Libraries\boost_1_69_0
   matrix:
-  - NAME: KArchiveMSVC2015x64
+  - NAME: KArchiveMSVC2017x64
     module_name: KArchive
     module_repo: karchive.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015_64
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 15.0\VC
     comp_platform: amd64
     use_mingw: "false"
     python_path: C:\Python37-x64
-  - NAME: KArchiveMSVC2015x32
+  - NAME: KArchiveMSVC2017x32
     module_name: KArchive
     module_repo: karchive.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 15.0\VC
     comp_platform: x86
     use_mingw: "false"
     python_path: C:\Python37
-  - NAME: KArchiveMinGWx32
-    module_name: KArchive
-    module_repo: karchive.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\mingw53_32
-    COMPILER: C:\Qt\Tools\mingw530_32
-    comp_platform: x86
-    use_mingw: "true"
-    python_path: C:\Python37
-  - NAME: KCodecsMSVC2015x64
+  - NAME: KCodecsMSVC2017x64
     module_name: KCodecs
     module_repo: kcodecs.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015_64
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 15.0\VC
     comp_platform: amd64
     use_mingw: "false"
     python_path: C:\Python37-x64
-  - NAME: KCodecsMSVC2015x32
+  - NAME: KCodecsMSVC2017x32
     module_name: KCodecs
     module_repo: kcodecs.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 15.0\VC
     comp_platform: x86
     use_mingw: "false"
     python_path: C:\Python37
-  - NAME: KCodecsMinGWx32
-    module_name: KCodecs
-    module_repo: kcodecs.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\mingw53_32
-    COMPILER: C:\Qt\Tools\mingw530_32
-    comp_platform: x86
-    use_mingw: "true"
-    python_path: C:\Python37
-  - NAME: KItemModelsMSVC2015x64
+  - NAME: KItemModelsMSVC2017x64
     module_name: KItemModels
     module_repo: kitemmodels.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015_64
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 15.0\VC
     comp_platform: amd64
     use_mingw: "false"
     python_path: C:\Python37-x64
-  - NAME: KItemModelsMSVC2015x32
+  - NAME: KItemModelsMSVC2017x32
     module_name: KItemModels
     module_repo: kitemmodels.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 15.0\VC
     comp_platform: x86
     use_mingw: "false"
     python_path: C:\Python37
-  - NAME: KItemModelsMinGWx32
-    module_name: KItemModels
-    module_repo: kitemmodels.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\mingw53_32
-    COMPILER: C:\Qt\Tools\mingw530_32
-    comp_platform: x86
-    use_mingw: "true"
-    python_path: C:\Python37
-  - NAME: KItemViewsMSVC2015x64
+  - NAME: KItemViewsMSVC2017x64
     module_name: KItemViews
     module_repo: kitemviews.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015_64
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 15.0\VC
     comp_platform: amd64
     use_mingw: "false"
     python_path: C:\Python37-x64
-  - NAME: KItemViewsMSVC2015x32
+  - NAME: KItemViewsMSVC2017x32
     module_name: KItemViews
     module_repo: kitemviews.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 15.0\VC
     comp_platform: x86
     use_mingw: "false"
     python_path: C:\Python37
-  - NAME: KItemViewsMinGWx32
-    module_name: KItemViews
-    module_repo: kitemviews.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\mingw53_32
-    COMPILER: C:\Qt\Tools\mingw530_32
-    comp_platform: x86
-    use_mingw: "true"
-    python_path: C:\Python37
-  - NAME: KCoreAddonsMSVC2015x64
+  - NAME: KCoreAddonsMSVC2017x64
     module_name: KCoreAddons
     module_repo: kcoreaddons.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015_64
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 15.0\VC
     comp_platform: amd64
     use_mingw: "false"
     python_path: C:\Python37-x64
-  - NAME: KCoreAddonsMSVC2015x32
+  - NAME: KCoreAddonsMSVC2017x32
     module_name: KCoreAddons
     module_repo: kcoreaddons.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 15.0\VC
     comp_platform: x86
     use_mingw: "false"
     python_path: C:\Python37
-  - NAME: KCoreAddonsMinGWx32
-    module_name: KCoreAddons
-    module_repo: kcoreaddons.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\mingw53_32
-    COMPILER: C:\Qt\Tools\mingw530_32
-    comp_platform: x86
-    use_mingw: "true"
-    python_path: C:\Python37
-  - NAME: KGuiAddonsMSVC2015x64
+  - NAME: KGuiAddonsMSVC2017x64
     module_name: KGuiAddons
     module_repo: kguiaddons.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015_64
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 15.0\VC
     comp_platform: amd64
     use_mingw: "false"
     python_path: C:\Python37-x64
-  - NAME: KGuiAddonsMSVC2015x32
+  - NAME: KGuiAddonsMSVC2017x32
     module_name: KGuiAddons
     module_repo: kguiaddons.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 15.0\VC
     comp_platform: x86
     use_mingw: "false"
     python_path: C:\Python37
-  - NAME: KGuiAddonsMinGWx32
-    module_name: KGuiAddons
-    module_repo: kguiaddons.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\mingw53_32
-    COMPILER: C:\Qt\Tools\mingw530_32
-    comp_platform: x86
-    use_mingw: "true"
-    python_path: C:\Python37
-  - NAME: KWidgetsAddonsMSVC2015x64
+  - NAME: KWidgetsAddonsMSVC2017x64
     module_name: KWidgetsAddons
     module_repo: kwidgetsaddons.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015_64
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 15.0\VC
     comp_platform: amd64
     use_mingw: "false"
     python_path: C:\Python37-x64
-  - NAME: KWidgetsAddonsMSVC2015x32
+  - NAME: KWidgetsAddonsMSVC2017x32
     module_name: KWidgetsAddons
     module_repo: kwidgetsaddons.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 15.0\VC
     comp_platform: x86
     use_mingw: "false"
     python_path: C:\Python37
-  - NAME: KWidgetsAddonsMinGWx32
-    module_name: KWidgetsAddons
-    module_repo: kwidgetsaddons.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\mingw53_32
-    COMPILER: C:\Qt\Tools\mingw530_32
-    comp_platform: x86
-    use_mingw: "true"
-    python_path: C:\Python37
-  - NAME: KIdleTimeMSVC2015x64
+  - NAME: KIdleTimeMSVC2017x64
     module_name: KIdleTime
     module_repo: kidletime.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015_64
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 15.0\VC
     comp_platform: amd64
     use_mingw: "false"
     python_path: C:\Python37-x64
-  - NAME: KIdleTimeMSVC2015x32
+  - NAME: KIdleTimeMSVC2017x32
     module_name: KIdleTime
     module_repo: kidletime.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2015
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+    QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio 15.0\VC
     comp_platform: x86
     use_mingw: "false"
-    python_path: C:\Python37
-  - NAME: KIdleTimeMinGWx32
-    module_name: KIdleTime
-    module_repo: kidletime.git
-    QT5: C:\Qt\%LatestLTSQtVersion%\mingw53_32
-    COMPILER: C:\Qt\Tools\mingw530_32
-    comp_platform: x86
-    use_mingw: "true"
     python_path: C:\Python37
 
 matrix:
