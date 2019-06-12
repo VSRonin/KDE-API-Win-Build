@@ -15,7 +15,7 @@ environment:
     module_name: KArchive
     module_repo: karchive.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC\Auxiliary\Build
     comp_platform: amd64
     use_mingw: "false"
     python_path: C:\Python37-x64
@@ -23,7 +23,7 @@ environment:
     module_name: KArchive
     module_repo: karchive.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC\Auxiliary\Build
     comp_platform: x86
     use_mingw: "false"
     python_path: C:\Python37
@@ -31,7 +31,7 @@ environment:
     module_name: KCodecs
     module_repo: kcodecs.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC\Auxiliary\Build
     comp_platform: amd64
     use_mingw: "false"
     python_path: C:\Python37-x64
@@ -39,7 +39,7 @@ environment:
     module_name: KCodecs
     module_repo: kcodecs.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC\Auxiliary\Build
     comp_platform: x86
     use_mingw: "false"
     python_path: C:\Python37
@@ -47,7 +47,7 @@ environment:
     module_name: KItemModels
     module_repo: kitemmodels.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC\Auxiliary\Build
     comp_platform: amd64
     use_mingw: "false"
     python_path: C:\Python37-x64
@@ -55,7 +55,7 @@ environment:
     module_name: KItemModels
     module_repo: kitemmodels.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC\Auxiliary\Build
     comp_platform: x86
     use_mingw: "false"
     python_path: C:\Python37
@@ -63,7 +63,7 @@ environment:
     module_name: KItemViews
     module_repo: kitemviews.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC\Auxiliary\Build
     comp_platform: amd64
     use_mingw: "false"
     python_path: C:\Python37-x64
@@ -71,7 +71,7 @@ environment:
     module_name: KItemViews
     module_repo: kitemviews.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC\Auxiliary\Build
     comp_platform: x86
     use_mingw: "false"
     python_path: C:\Python37
@@ -79,7 +79,7 @@ environment:
     module_name: KCoreAddons
     module_repo: kcoreaddons.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC\Auxiliary\Build
     comp_platform: amd64
     use_mingw: "false"
     python_path: C:\Python37-x64
@@ -87,7 +87,7 @@ environment:
     module_name: KCoreAddons
     module_repo: kcoreaddons.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC\Auxiliary\Build
     comp_platform: x86
     use_mingw: "false"
     python_path: C:\Python37
@@ -95,7 +95,7 @@ environment:
     module_name: KGuiAddons
     module_repo: kguiaddons.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC\Auxiliary\Build
     comp_platform: amd64
     use_mingw: "false"
     python_path: C:\Python37-x64
@@ -103,7 +103,7 @@ environment:
     module_name: KGuiAddons
     module_repo: kguiaddons.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC\Auxiliary\Build
     comp_platform: x86
     use_mingw: "false"
     python_path: C:\Python37
@@ -111,7 +111,7 @@ environment:
     module_name: KWidgetsAddons
     module_repo: kwidgetsaddons.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC\Auxiliary\Build
     comp_platform: amd64
     use_mingw: "false"
     python_path: C:\Python37-x64
@@ -119,7 +119,7 @@ environment:
     module_name: KWidgetsAddons
     module_repo: kwidgetsaddons.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC\Auxiliary\Build
     comp_platform: x86
     use_mingw: "false"
     python_path: C:\Python37
@@ -127,7 +127,7 @@ environment:
     module_name: KIdleTime
     module_repo: kidletime.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC\Auxiliary\Build
     comp_platform: amd64
     use_mingw: "false"
     python_path: C:\Python37-x64
@@ -135,7 +135,7 @@ environment:
     module_name: KIdleTime
     module_repo: kidletime.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
-    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC
+    COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC\Auxiliary\Build
     comp_platform: x86
     use_mingw: "false"
     python_path: C:\Python37
