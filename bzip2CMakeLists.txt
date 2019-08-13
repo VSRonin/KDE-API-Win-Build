@@ -1,0 +1,39 @@
+cmake_minimum_required(VERSION 3.5)
+project(bzip2 C)
+set(bzip2_SRCS 
+    bzlib.c
+    blocksort.c
+    huffman.c
+    crctable.c
+    compress.c
+    decompress.c
+    randtable.c
+)
+add_library(bzip2 SHARED ${bzip2_SRCS})
+target_compile_definitions(bzip2 PRIVATE -DBZ_BUILD_DLL)
+if(MSVC)
+    target_compile_definitions(bzip2 PRIVATE -D_CRT_SECURE_NO_WARNINGS)
+    target_compile_definitions(bzip2 PRIVATE -D_CRT_SECURE_NO_DEPRECATE)
+    target_compile_definitions(bzip2 PRIVATE -D_CRT_NONSTDC_NO_DEPRECATE)
+endif()
+set_target_properties(bzip2 PROPERTIES
+    DEBUG_POSTFIX d
+    VERSION 1.0.6
+    SOVERSION 1.0)
+install(TARGETS bzip2
+    EXPORT bzip2
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+)
+install(FILES bzlib.h
+    DESTINATION include
+)
+SET(CPACK_PACKAGE_VERSION_MAJOR 1)
+SET(CPACK_PACKAGE_VERSION_MINOR 0)
+SET(CPACK_PACKAGE_VERSION_PATCH 5)
+SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README")
+SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+SET(CPACK_PACKAGE_FILE_NAME "bzip2-${bzip2_VERSION}")
+SET(CPACK_OUTPUT_FILE_PREFIX "../")
+include(CPack)

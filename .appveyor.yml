@@ -144,12 +144,10 @@ matrix:
   fast_finish: true
 
 before_build:
-- dir "C:\Program Files (x86)\Microsoft Visual Studio\2017"
 - set need_gperf=false
 - if %module_name%==KCodecs set need_gperf=true
 - set need_bzip2=false
 - if %module_name%==KArchive set need_bzip2=true
-- set need_bzip2=false
 - set need_zlib=false
 - if %module_name%==KArchive set need_zlib=true
 - set need_liblzma=false
@@ -171,19 +169,15 @@ before_build:
 - if %need_gperf%==true move /Y gperf.zip ..\
 - if %need_gperf%==true set PATH=%CD%\bin;%PATH%
 - if %need_gperf%==true cd ..\
-- if %need_bzip2%==true mkdir .\bzip2src
+- if %need_bzip2%==true git clone git://sourceware.org/git/bzip2.git bzip2src
 - if %need_bzip2%==true cd .\bzip2src
-- if %need_bzip2%==true curl -k -L https://sourceforge.net/projects/gnuwin32/files/bzip2/1.0.5/bzip2-1.0.5-src.zip --output bzip2.zip
-- if %need_bzip2%==true 7z x bzip2.zip
-- if %need_bzip2%==true del /F /Q  bzip2.zip
-- if %need_bzip2%==true cd src\bzip2\1.0.5\bzip2-1.0.5\
 - if %need_bzip2%==true copy /Y %originalWD%\bzip2CMakeLists.txt CMakeLists.txt
 - if %need_bzip2%==true mkdir build
 - if %need_bzip2%==true cd build
-- if %need_bzip2%==true cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../../../../../bzip2 -DCMAKE_BUILD_TYPE=RELEASE ../
+- if %need_bzip2%==true cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../bzip2 -DCMAKE_BUILD_TYPE=RELEASE ../
 - if %need_bzip2%==true cmake --build .
 - if %need_bzip2%==true cmake --build . --target install
-- if %need_bzip2%==true cd ..\..\..\..\..\..\
+- if %need_bzip2%==true cd ..\..\
 - if %need_bzip2%==true set PATH=%CD%\bzip2;%PATH%
 - if %need_bzip2%==true 7z a -tzip bzip2.zip .\bzip2\*
 - if %need_liblzma%==true mkdir .\liblzma
