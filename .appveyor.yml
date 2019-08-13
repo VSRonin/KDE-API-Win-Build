@@ -179,7 +179,7 @@ before_build:
 - if %need_liblzma%==true cd xz-5.2.4\windows\vs2013
 - if %need_liblzma%==true if %comp_platform%==x86 (msbuild xz_win.sln /property:Configuration=Release /property:Platform=Win32 && xcopy /Y /I /K Release\Win32\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\Win32\liblzma_dll\*.lib ..\..\..\lib)
 - if %need_liblzma%==true if %comp_platform%==amd64 (msbuild xz_win.sln /property:Configuration=Release /property:Platform=x64 && xcopy /Y /I /K Release\x64\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\x64\liblzma_dll\*.lib ..\..\..\lib)
-- if %need_liblzma%==true if cd ..\..\..\
+- if %need_liblzma%==true cd ..\..\..\
 - if %need_liblzma%==true set PATH=%CD%;%PATH%
 - if %need_liblzma%==true cd ..\
 - if %need_liblzma%==true 7z a -tzip liblzma.zip .\liblzma\include\
