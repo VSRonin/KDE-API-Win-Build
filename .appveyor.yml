@@ -17,7 +17,6 @@ environment:
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build
     comp_platform: amd64
-    use_mingw: "false"
     python_path: C:\Python37-x64
   - NAME: KArchiveMSVC2017x32
     module_name: KArchive
@@ -25,7 +24,6 @@ environment:
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build
     comp_platform: x86
-    use_mingw: "false"
     python_path: C:\Python37
   - NAME: KCodecsMSVC2017x64
     module_name: KCodecs
@@ -33,7 +31,6 @@ environment:
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build
     comp_platform: amd64
-    use_mingw: "false"
     python_path: C:\Python37-x64
   - NAME: KCodecsMSVC2017x32
     module_name: KCodecs
@@ -41,7 +38,6 @@ environment:
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build
     comp_platform: x86
-    use_mingw: "false"
     python_path: C:\Python37
   - NAME: KItemModelsMSVC2017x64
     module_name: KItemModels
@@ -49,7 +45,6 @@ environment:
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build
     comp_platform: amd64
-    use_mingw: "false"
     python_path: C:\Python37-x64
   - NAME: KItemModelsMSVC2017x32
     module_name: KItemModels
@@ -57,7 +52,6 @@ environment:
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build
     comp_platform: x86
-    use_mingw: "false"
     python_path: C:\Python37
   - NAME: KItemViewsMSVC2017x64
     module_name: KItemViews
@@ -65,7 +59,6 @@ environment:
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build
     comp_platform: amd64
-    use_mingw: "false"
     python_path: C:\Python37-x64
   - NAME: KItemViewsMSVC2017x32
     module_name: KItemViews
@@ -73,7 +66,6 @@ environment:
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build
     comp_platform: x86
-    use_mingw: "false"
     python_path: C:\Python37
   - NAME: KCoreAddonsMSVC2017x64
     module_name: KCoreAddons
@@ -81,7 +73,6 @@ environment:
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build
     comp_platform: amd64
-    use_mingw: "false"
     python_path: C:\Python37-x64
   - NAME: KCoreAddonsMSVC2017x32
     module_name: KCoreAddons
@@ -89,7 +80,6 @@ environment:
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build
     comp_platform: x86
-    use_mingw: "false"
     python_path: C:\Python37
   - NAME: KGuiAddonsMSVC2017x64
     module_name: KGuiAddons
@@ -97,7 +87,6 @@ environment:
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build
     comp_platform: amd64
-    use_mingw: "false"
     python_path: C:\Python37-x64
   - NAME: KGuiAddonsMSVC2017x32
     module_name: KGuiAddons
@@ -105,7 +94,6 @@ environment:
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build
     comp_platform: x86
-    use_mingw: "false"
     python_path: C:\Python37
   - NAME: KWidgetsAddonsMSVC2017x64
     module_name: KWidgetsAddons
@@ -113,7 +101,6 @@ environment:
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build
     comp_platform: amd64
-    use_mingw: "false"
     python_path: C:\Python37-x64
   - NAME: KWidgetsAddonsMSVC2017x32
     module_name: KWidgetsAddons
@@ -121,7 +108,6 @@ environment:
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build
     comp_platform: x86
-    use_mingw: "false"
     python_path: C:\Python37
   - NAME: KIdleTimeMSVC2017x64
     module_name: KIdleTime
@@ -129,7 +115,6 @@ environment:
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build
     comp_platform: amd64
-    use_mingw: "false"
     python_path: C:\Python37-x64
   - NAME: KIdleTimeMSVC2017x32
     module_name: KIdleTime
@@ -137,7 +122,6 @@ environment:
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build
     comp_platform: x86
-    use_mingw: "false"
     python_path: C:\Python37
 
 matrix:
@@ -159,9 +143,8 @@ before_build:
 - call "%QT5%\bin\qtenv2.bat"
 - cd %originalWD%
 - echo on
-- if not %use_mingw%==true call "%COMPILER%\vcvarsall.bat" %comp_platform%
-- if %use_mingw%==true (set CMAKEGENERATOR="MinGW Makefiles") else (set CMAKEGENERATOR="NMake Makefiles")
-- if %use_mingw%==true set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
+- call "%COMPILER%\vcvarsall.bat" %comp_platform%
+- set CMAKEGENERATOR="NMake Makefiles"
 - if %need_gperf%==true mkdir .\gperf
 - if %need_gperf%==true cd .\gperf
 - if %need_gperf%==true curl -k -L https://sourceforge.net/projects/gnuwin32/files/gperf/3.0.1/gperf-3.0.1-bin.zip --output gperf.zip
@@ -169,15 +152,17 @@ before_build:
 - if %need_gperf%==true move /Y gperf.zip ..\
 - if %need_gperf%==true set PATH=%CD%\bin;%PATH%
 - if %need_gperf%==true cd ..\
+- if %need_bzip2%==true mkdir bzip2
+- if %need_bzip2%==true cd bzip2
+- if %need_bzip2%==true mkdir lib
+- if %need_bzip2%==true mkdir include
+- if %need_bzip2%==true cd ..\
 - if %need_bzip2%==true git clone git://sourceware.org/git/bzip2.git bzip2src
 - if %need_bzip2%==true cd .\bzip2src
-- if %need_bzip2%==true copy /Y %originalWD%\bzip2CMakeLists.txt CMakeLists.txt
-- if %need_bzip2%==true mkdir build
-- if %need_bzip2%==true cd build
-- if %need_bzip2%==true cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../bzip2 -DCMAKE_BUILD_TYPE=RELEASE ../
-- if %need_bzip2%==true cmake --build .
-- if %need_bzip2%==true cmake --build . --target install
-- if %need_bzip2%==true cd ..\..\
+- if %need_bzip2%==true nmake -f makefile.msc
+- if %need_bzip2%==true copy /Y libbz2.lib ..\bzip2\lib\libbz2.lib
+- if %need_bzip2%==true copy /Y bzlib.h ..\bzip2\include\bzlib.h
+- if %need_bzip2%==true cd ..\
 - if %need_bzip2%==true set PATH=%CD%\bzip2;%PATH%
 - if %need_bzip2%==true 7z a -tzip bzip2.zip .\bzip2\*
 - if %need_liblzma%==true mkdir .\liblzma
@@ -185,21 +170,21 @@ before_build:
 - if %need_liblzma%==true curl -k -L https://tukaani.org/xz/xz-5.2.4-windows.zip --output liblzma.zip
 - if %need_liblzma%==true 7z x liblzma.zip
 - if %need_liblzma%==true del /F /Q liblzma.zip
-- if %need_liblzma%==true if %use_mingw%==true (ren bin_i686 lib) else (mkdir lib && mkdir bin)
-- if %need_liblzma%==true if %use_mingw%==false curl -k -L https://tukaani.org/xz/xz-5.2.4.tar.gz --output liblzma.tar.gz
-- if %need_liblzma%==true if %use_mingw%==false 7z x liblzma.tar.gz
-- if %need_liblzma%==true if %use_mingw%==false del /F /Q liblzma.tar.gz
-- if %need_liblzma%==true if %use_mingw%==false 7z x liblzma.tar
-- if %need_liblzma%==true if %use_mingw%==false del /F /Q liblzma.tar
-- if %need_liblzma%==true if %use_mingw%==false cd xz-5.2.4\windows\vs2013
-- if %need_liblzma%==true if %comp_platform%==x86 if %use_mingw%==false (msbuild xz_win.sln /property:Configuration=Release /property:Platform=Win32 && xcopy /Y /I /K Release\Win32\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\Win32\liblzma_dll\*.lib ..\..\..\lib)
-- if %need_liblzma%==true if %comp_platform%==amd64 if %use_mingw%==false (msbuild xz_win.sln /property:Configuration=Release /property:Platform=x64 && xcopy /Y /I /K Release\x64\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\x64\liblzma_dll\*.lib ..\..\..\lib)
-- if %need_liblzma%==true if %use_mingw%==false cd ..\..\..\
+- if %need_liblzma%==true mkdir lib && mkdir bin
+- if %need_liblzma%==true curl -k -L https://tukaani.org/xz/xz-5.2.4.tar.gz --output liblzma.tar.gz
+- if %need_liblzma%==true 7z x liblzma.tar.gz
+- if %need_liblzma%==true del /F /Q liblzma.tar.gz
+- if %need_liblzma%==true 7z x liblzma.tar
+- if %need_liblzma%==true del /F /Q liblzma.tar
+- if %need_liblzma%==true cd xz-5.2.4\windows\vs2013
+- if %need_liblzma%==true if %comp_platform%==x86 (msbuild xz_win.sln /property:Configuration=Release /property:Platform=Win32 && xcopy /Y /I /K Release\Win32\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\Win32\liblzma_dll\*.lib ..\..\..\lib)
+- if %need_liblzma%==true if %comp_platform%==amd64 (msbuild xz_win.sln /property:Configuration=Release /property:Platform=x64 && xcopy /Y /I /K Release\x64\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\x64\liblzma_dll\*.lib ..\..\..\lib)
+- if %need_liblzma%==true if cd ..\..\..\
 - if %need_liblzma%==true set PATH=%CD%;%PATH%
 - if %need_liblzma%==true cd ..\
 - if %need_liblzma%==true 7z a -tzip liblzma.zip .\liblzma\include\
 - if %need_liblzma%==true 7z a -tzip liblzma.zip .\liblzma\lib\
-- if %need_liblzma%==true if %use_mingw%==false 7z a -tzip liblzma.zip .\liblzma\bin\
+- if %need_liblzma%==true 7z a -tzip liblzma.zip .\liblzma\bin\
 - if %need_zlib%==true git clone https://github.com/madler/zlib.git zlibBuild
 - if %need_zlib%==true cd zlibBuild
 - if %need_zlib%==true mkdir .\build
@@ -234,7 +219,6 @@ build_script:
 - cd ..\..\
 
 after_build:
-- if %use_mingw%==true set PATH=C:\Program Files\Git\usr\bin;%PATH%
 - 7z a -tzip %module_name%.zip .\KDEAPI\*
 
 artifacts:
