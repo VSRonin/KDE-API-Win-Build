@@ -154,6 +154,7 @@ before_build:
 - if %need_gperf%==true cd ..\
 - if %need_bzip2%==true git clone git://sourceware.org/git/bzip2.git bzip2src
 - if %need_bzip2%==true copy /Y bzip2CMakeLists.txt .\bzip2src\CMakeLists.txt
+- if %need_bzip2%==true copy /Y libbz2.def .\bzip2src\libbz2.def
 - if %need_bzip2%==true cd .\bzip2src
 - if %need_bzip2%==true mkdir .\build 
 - if %need_bzip2%==true cd .\build

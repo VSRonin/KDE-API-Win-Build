@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(libbz2 C)
+project(bzip2 C)
 set(bzip2_SRCS 
     bzlib.c
     blocksort.c
@@ -10,14 +10,14 @@ set(bzip2_SRCS
     randtable.c
     libbz2.def
 )
-add_library(libbz2 SHARED ${bzip2_SRCS})
-target_compile_definitions(libbz2 PRIVATE -D_FILE_OFFSET_BITS=64)
-set_target_properties(libbz2 PROPERTIES
+add_library(bzip2 SHARED ${bzip2_SRCS})
+target_compile_definitions(bzip2 PRIVATE -D_FILE_OFFSET_BITS=64)
+set_target_properties(bzip2 PROPERTIES
     DEBUG_POSTFIX d
     VERSION 1.0.8
     SOVERSION 1.0)
-install(TARGETS libbz2
-    EXPORT libbz2
+install(TARGETS bzip2
+    EXPORT bzip2
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
