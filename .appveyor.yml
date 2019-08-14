@@ -152,7 +152,7 @@ before_build:
 - if %need_gperf%==true move /Y gperf.zip ..\
 - if %need_gperf%==true set PATH=%CD%\bin;%PATH%
 - if %need_gperf%==true cd ..\
-- if %need_bzip2%==true git clone git://sourceware.org/git/bzip2.git bzip2src
+- if %need_bzip2%==true git clone --depth=1 git://sourceware.org/git/bzip2.git bzip2src
 - if %need_bzip2%==true copy /Y bzip2CMakeLists.txt .\bzip2src\CMakeLists.txt
 - if %need_bzip2%==true copy /Y libbz2.def .\bzip2src\libbz2.def
 - if %need_bzip2%==true cd .\bzip2src
@@ -194,7 +194,7 @@ before_build:
 - if %need_zlib%==true cd ..\..\
 - if %need_zlib%==true 7z a -tzip zlib.zip .\zlib\*
 - if %need_zlib%==true set PATH=%CD%\zlib;%PATH%
-- git clone git://anongit.kde.org/extra-cmake-modules ECM
+- git clone --depth=1 git://anongit.kde.org/extra-cmake-modules ECM
 - cd ECM
 - mkdir .\build 
 - cd .\build
@@ -205,7 +205,7 @@ before_build:
 - set PATH=%CD%\ECMbuild;%PATH%
 
 build_script:
-- git clone git://anongit.kde.org/%module_repo% %module_name%
+- git clone --depth=1 git://anongit.kde.org/%module_repo% %module_name%
 - cd %module_name%
 - mkdir .\build 
 - cd .\build
