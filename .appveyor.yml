@@ -152,17 +152,15 @@ before_build:
 - if %need_gperf%==true move /Y gperf.zip ..\
 - if %need_gperf%==true set PATH=%CD%\bin;%PATH%
 - if %need_gperf%==true cd ..\
-- if %need_bzip2%==true mkdir bzip2
-- if %need_bzip2%==true cd bzip2
-- if %need_bzip2%==true mkdir lib
-- if %need_bzip2%==true mkdir include
-- if %need_bzip2%==true cd ..\
 - if %need_bzip2%==true git clone git://sourceware.org/git/bzip2.git bzip2src
+- if %need_bzip2%==true copy /Y bzip2CMakeLists.txt .\bzip2src\CMakeLists.txt
 - if %need_bzip2%==true cd .\bzip2src
-- if %need_bzip2%==true nmake -f makefile.msc
-- if %need_bzip2%==true copy /Y libbz2.lib ..\bzip2\lib\libbz2.lib
-- if %need_bzip2%==true copy /Y bzlib.h ..\bzip2\include\bzlib.h
-- if %need_bzip2%==true cd ..\
+- if %need_bzip2%==true mkdir .\build 
+- if %need_bzip2%==true cd .\build
+- if %need_bzip2%==true cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../bzip2 -DCMAKE_BUILD_TYPE=RELEASE ../
+- if %need_bzip2%==true cmake --build .
+- if %need_bzip2%==true cmake --build . --target install
+- if %need_bzip2%==true cd ..\..\
 - if %need_bzip2%==true set PATH=%CD%\bzip2;%PATH%
 - if %need_bzip2%==true 7z a -tzip bzip2.zip .\bzip2\*
 - if %need_liblzma%==true mkdir .\liblzma
