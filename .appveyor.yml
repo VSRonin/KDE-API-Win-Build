@@ -11,118 +11,118 @@ environment:
     LatestLTSQtVersion: 5.14
     boost_path: C:\Libraries\boost_1_73_0
   matrix:
-  - NAME: KArchiveMSVC2017x64
+  - NAME: KArchiveMSVC2019x64
     module_name: KArchive
     module_repo: karchive.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build
     comp_platform: amd64
-    python_path: C:\Python37-x64
-  - NAME: KArchiveMSVC2017x32
+    python_path: C:\Python38-x64
+  - NAME: KArchiveMSVC2019x32
     module_name: KArchive
     module_repo: karchive.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build
     comp_platform: x86
-    python_path: C:\Python37
-  - NAME: KCodecsMSVC2017x64
+    python_path: C:\Python38
+  - NAME: KCodecsMSVC2019x64
     module_name: KCodecs
     module_repo: kcodecs.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build
     comp_platform: amd64
-    python_path: C:\Python37-x64
-  - NAME: KCodecsMSVC2017x32
+    python_path: C:\Python38-x64
+  - NAME: KCodecsMSVC2019x32
     module_name: KCodecs
     module_repo: kcodecs.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build
     comp_platform: x86
-    python_path: C:\Python37
-  - NAME: KItemModelsMSVC2017x64
+    python_path: C:\Python38
+  - NAME: KItemModelsMSVC2019x64
     module_name: KItemModels
     module_repo: kitemmodels.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build
     comp_platform: amd64
-    python_path: C:\Python37-x64
-  - NAME: KItemModelsMSVC2017x32
+    python_path: C:\Python38-x64
+  - NAME: KItemModelsMSVC2019x32
     module_name: KItemModels
     module_repo: kitemmodels.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build
     comp_platform: x86
-    python_path: C:\Python37
-  - NAME: KItemViewsMSVC2017x64
+    python_path: C:\Python38
+  - NAME: KItemViewsMSVC2019x64
     module_name: KItemViews
     module_repo: kitemviews.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build
     comp_platform: amd64
-    python_path: C:\Python37-x64
-  - NAME: KItemViewsMSVC2017x32
+    python_path: C:\Python38-x64
+  - NAME: KItemViewsMSVC2019x32
     module_name: KItemViews
     module_repo: kitemviews.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build
     comp_platform: x86
-    python_path: C:\Python37
-  - NAME: KCoreAddonsMSVC2017x64
+    python_path: C:\Python38
+  - NAME: KCoreAddonsMSVC2019x64
     module_name: KCoreAddons
     module_repo: kcoreaddons.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build
     comp_platform: amd64
-    python_path: C:\Python37-x64
-  - NAME: KCoreAddonsMSVC2017x32
+    python_path: C:\Python38-x64
+  - NAME: KCoreAddonsMSVC2019x32
     module_name: KCoreAddons
     module_repo: kcoreaddons.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build
     comp_platform: x86
-    python_path: C:\Python37
-  - NAME: KGuiAddonsMSVC2017x64
+    python_path: C:\Python38
+  - NAME: KGuiAddonsMSVC2019x64
     module_name: KGuiAddons
     module_repo: kguiaddons.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build
     comp_platform: amd64
-    python_path: C:\Python37-x64
-  - NAME: KGuiAddonsMSVC2017x32
+    python_path: C:\Python38-x64
+  - NAME: KGuiAddonsMSVC2019x32
     module_name: KGuiAddons
     module_repo: kguiaddons.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build
     comp_platform: x86
-    python_path: C:\Python37
-  - NAME: KWidgetsAddonsMSVC2017x64
+    python_path: C:\Python38
+  - NAME: KWidgetsAddonsMSVC2019x64
     module_name: KWidgetsAddons
     module_repo: kwidgetsaddons.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build
     comp_platform: amd64
-    python_path: C:\Python37-x64
-  - NAME: KWidgetsAddonsMSVC2017x32
+    python_path: C:\Python38-x64
+  - NAME: KWidgetsAddonsMSVC2019x32
     module_name: KWidgetsAddons
     module_repo: kwidgetsaddons.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build
     comp_platform: x86
-    python_path: C:\Python37
-  - NAME: KIdleTimeMSVC2017x64
+    python_path: C:\Python38
+  - NAME: KIdleTimeMSVC2019x64
     module_name: KIdleTime
     module_repo: kidletime.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017_64
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build
     comp_platform: amd64
-    python_path: C:\Python37-x64
-  - NAME: KIdleTimeMSVC2017x32
+    python_path: C:\Python38-x64
+  - NAME: KIdleTimeMSVC2019x32
     module_name: KIdleTime
     module_repo: kidletime.git
     QT5: C:\Qt\%LatestLTSQtVersion%\msvc2017
     COMPILER: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build
     comp_platform: x86
-    python_path: C:\Python37
+    python_path: C:\Python38
 
 matrix:
   fast_finish: true
@@ -131,7 +131,7 @@ before_build:
 - set need_gperf=false
 - if %module_name%==KCodecs set need_gperf=true
 - set need_bzip2=false
-- if %module_name%==KArchive set need_bzip2=true
+- if %module_name%==KArchive set need_bzip2=true b
 - set need_zlib=false
 - if %module_name%==KArchive set need_zlib=true
 - set need_liblzma=false
@@ -156,9 +156,9 @@ before_build:
 - if %need_bzip2%==true cd .\bzip2src
 - if %need_bzip2%==true mkdir .\build 
 - if %need_bzip2%==true cd .\build
-- if %need_bzip2%==true cmake -G %CMAKEGENERATOR% -DCMAKE_INSTALL_PREFIX=../../bzip2 -DCMAKE_BUILD_TYPE=RELEASE ../
-- if %need_bzip2%==true cmake --build .
-- if %need_bzip2%==true cmake --build . --target install
+- if %need_bzip2%==true cmake -G %CMAKEGENERATOR% -DENABLE_LIB_ONLY=ON -DCMAKE_BUILD_TYPE="Release" -DCMAKE_INSTALL_PREFIX=../../bzip2 ../
+- if %need_bzip2%==true cmake --build . --config Release
+- if %need_bzip2%==true cmake --build . --target install --config Release
 - if %need_bzip2%==true cd ..\..\
 - if %need_bzip2%==true set PATH=%CD%\bzip2;%PATH%
 - if %need_bzip2%==true 7z a -tzip bzip2.zip .\bzip2\*
