@@ -164,6 +164,10 @@ before_build:
 - if %need_bzip2%==true 7z a -tzip bzip2.zip .\bzip2\*
 - if %need_liblzma%==true mkdir .\liblzma
 - if %need_liblzma%==true cd .\liblzma
+- if %need_liblzma%==true curl -k -L https://tukaani.org/xz/xz-5.2.4-windows.zip --output liblzma.zip
+- if %need_liblzma%==true 7z x liblzma.zip
+- if %need_liblzma%==true del /F /Q liblzma.zip
+- if %need_liblzma%==true mkdir lib && mkdir bin
 - if %need_liblzma%==true curl -k -L https://tukaani.org/xz/xz-5.2.5.tar.gz --output liblzma.tar.gz
 - if %need_liblzma%==true 7z x liblzma.tar.gz
 - if %need_liblzma%==true del /F /Q liblzma.tar.gz
