@@ -131,7 +131,7 @@ before_build:
 - set need_gperf=false
 - if %module_name%==KCodecs set need_gperf=true
 - set need_bzip2=false
-- if %module_name%==KArchive set need_bzip2=true b
+- if %module_name%==KArchive set need_bzip2=true
 - set need_zlib=false
 - if %module_name%==KArchive set need_zlib=true
 - set need_liblzma=false
