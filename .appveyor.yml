@@ -164,16 +164,12 @@ before_build:
 - if %need_bzip2%==true 7z a -tzip bzip2.zip .\bzip2\*
 - if %need_liblzma%==true mkdir .\liblzma
 - if %need_liblzma%==true cd .\liblzma
-- if %need_liblzma%==true curl -k -L https://tukaani.org/xz/xz-5.2.4-windows.zip --output liblzma.zip
-- if %need_liblzma%==true 7z x liblzma.zip
-- if %need_liblzma%==true del /F /Q liblzma.zip
-- if %need_liblzma%==true mkdir lib && mkdir bin
-- if %need_liblzma%==true curl -k -L https://tukaani.org/xz/xz-5.2.4.tar.gz --output liblzma.tar.gz
+- if %need_liblzma%==true curl -k -L https://tukaani.org/xz/xz-5.2.5.tar.gz --output liblzma.tar.gz
 - if %need_liblzma%==true 7z x liblzma.tar.gz
 - if %need_liblzma%==true del /F /Q liblzma.tar.gz
 - if %need_liblzma%==true 7z x liblzma.tar
 - if %need_liblzma%==true del /F /Q liblzma.tar
-- if %need_liblzma%==true cd xz-5.2.4\windows\vs2013
+- if %need_liblzma%==true cd xz-5.2.5\windows\vs2019
 - if %need_liblzma%==true if %comp_platform%==x86 (msbuild xz_win.sln /property:Configuration=Release /property:Platform=Win32 && xcopy /Y /I /K Release\Win32\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\Win32\liblzma_dll\*.lib ..\..\..\lib)
 - if %need_liblzma%==true if %comp_platform%==amd64 (msbuild xz_win.sln /property:Configuration=Release /property:Platform=x64 && xcopy /Y /I /K Release\x64\liblzma_dll\*.dll ..\..\..\bin && xcopy /Y /I /K Release\x64\liblzma_dll\*.lib ..\..\..\lib)
 - if %need_liblzma%==true cd ..\..\..\
